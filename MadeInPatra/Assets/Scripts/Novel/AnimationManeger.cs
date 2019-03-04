@@ -16,6 +16,7 @@ public class AnimationManeger : MonoBehaviour {
 		actionCount = 0;
 	}
 	
+	
 	// Update is called once per frame
 	void Update () {
 		
