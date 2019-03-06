@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class TextController : MonoBehaviour {
-	[SerializeField] private Text uiText;
+	[SerializeField] private Text uiText,nameText;
 	[SerializeField] private ScenarioManeger scenarioManeger;
 	[SerializeField]private AnimationManeger animationManeger;
 	private float textUpdateInterval = 0.1f,textUpdateTime = 0;
@@ -40,7 +40,6 @@ public class TextController : MonoBehaviour {
 				if(textUpdateInterval == 0){
 					textCount = currentText.Length;
 					uiText.text = currentText.Substring(0,currentText.Length);
-					cursorAnim.SetBool("wait",false);
 				}else{
 					textCount = (int)((Time.time - textUpdateTime)/textUpdateInterval);
 					if(textCount > currentText.Length){//クリックで経過した時間がテキストの長さの経過時間を超えた時
@@ -50,6 +49,8 @@ public class TextController : MonoBehaviour {
 						uiText.text = currentText.Substring(0,textCount);
 					}
 				}
+			}else{
+				cursorAnim.SetBool("wait",false);
 			}
 		}
 	}
@@ -60,7 +61,13 @@ public class TextController : MonoBehaviour {
 			Debug.Log("end");
 			//テキスト終了
 		}else{
-			currentText = scenarioManeger.GetCurrentText(scenarioIndex);
+			currentText = scenarioManeger.GetCurrentText(scenarioIndex);//現在の行のテキスト代入
+			if(currentText[0] == 'c'){
+				nameText.text = currentText.Split(new string[]{"c"},System.StringSplitOptions.None)[1];//テキストデータのuの文字の前にcharactorの名前を記載しているのでその取得
+				currentText = currentText.Substring(nameText.text.Length + 2);//charactorNameと判別のためのｃを削除
+			}else{
+				nameText.text = null;
+			}
 			animationManeger.ExecuteAnimation(scenarioIndex);//animation呼び出し
 			scenarioIndex++;
 		}

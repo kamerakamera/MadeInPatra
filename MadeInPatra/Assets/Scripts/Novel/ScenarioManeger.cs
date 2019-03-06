@@ -5,7 +5,7 @@ using UnityEngine;
 public class ScenarioManeger : MonoBehaviour {
 	public string loadFileName;
 	private string[] scenarios;
-	private int currentTextLine,textLine,currentIndex = 0;
+ 	private int currentTextLine,textLine,currentIndex = 0;
 	
 	// Use this for initialization
 	void Awake(){

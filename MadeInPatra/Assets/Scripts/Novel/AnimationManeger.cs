@@ -4,7 +4,8 @@ using UnityEngine;
 
 
 public class AnimationManeger : MonoBehaviour {
-	[SerializeField]int eventAmount,audioClipCount;
+	//[SerializeField]int eventAmount;
+	private int audioClipCount;
 	[SerializeField]string[] eventName;
 	[SerializeField]int[] eventLine,charactorNum;
 	int actionCount;

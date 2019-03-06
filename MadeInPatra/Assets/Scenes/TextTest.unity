@@ -395,13 +395,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 627f2fc36c9e08f43aec98ef81f6055c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eventAmount: 1
-  audioClipCount: 0
   eventName:
   - Enter
   - Jump
-  - Sound
-  eventLine: 030000000500000005000000
+  eventLine: 0700000009000000
   charactorNum: 0000000000000000
   animator:
   - {fileID: 1962612258}
@@ -904,7 +901,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u30D1\u30C8\u30E9"
+  m_Text: 
 --- !u!222 &1570551395
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1332,6 +1329,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiText: {fileID: 731767897}
+  nameText: {fileID: 1570551394}
   scenarioManeger: {fileID: 431811902}
   animationManeger: {fileID: 455129496}
   cursorAnim: {fileID: 274372042}
