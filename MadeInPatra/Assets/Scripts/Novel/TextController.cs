@@ -19,13 +19,11 @@ public class TextController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if(!textBox.activeSelf){
+			textUpdateTime += Time.deltaTime; //TextBox非表示の時にテキストの更新時間を遅延させる
+		}
 		if(Input.GetMouseButtonDown(1)){
-			if(textBox.activeSelf){
-				textBox.SetActive(false);
-			}
-			else if(!textBox.activeSelf){
-				textBox.SetActive(true);
-			}
+			SwitchTextBox();
 		}
 		if(textBox.activeSelf){
 			if(Input.GetMouseButtonDown(0)){
@@ -55,6 +53,14 @@ public class TextController : MonoBehaviour {
 		}
 	}
 
+	void SwitchTextBox(){
+		if(textBox.activeSelf){
+			textBox.SetActive(false);
+		}
+		else if(!textBox.activeSelf){
+			textBox.SetActive(true);
+		}
+	}
 
 	void SetNextText(){
 		if(scenarioIndex >= scenarioManeger.GetTextLine()){
