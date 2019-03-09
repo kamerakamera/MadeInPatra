@@ -17,6 +17,7 @@ public class AnimationManeger : MonoBehaviour {
 	[SerializeField]private AudioClip[] audioClip;
 	[SerializeField]private Image stillView;
 	[SerializeField]private Sprite[] stillPictures;
+	[SerializeField]private TextBoxController textBoxController;
 	//[SerializeField]private GameObject textBox;
 	// Use this for initialization
 	void Start () {
@@ -56,6 +57,8 @@ public class AnimationManeger : MonoBehaviour {
 	private IEnumerator FadeIn(){
 		fadeVal = 0;
 		stillView.gameObject.SetActive(true);
+		textBoxController.ViewCGs();
+		textBoxController.SwitchTextBox();
 		while(true){
 			fadeVal += Time.deltaTime;
 			stillView.color = new Color(1,1,1,fadeVal/fadeTime);
@@ -64,11 +67,14 @@ public class AnimationManeger : MonoBehaviour {
 			}
 			yield return null;
 		}
+		textBoxController.SwitchTextBox();
 		yield break;
 	}
 
 	private IEnumerator FadeOut(){
 		fadeVal = 0;
+		textBoxController.ViewCGs();
+		textBoxController.SwitchTextBox();
 		while(true){
 			fadeVal += Time.deltaTime;
 			stillView.color = new Color(1,1,1,1 - fadeVal/fadeTime);
@@ -77,6 +83,7 @@ public class AnimationManeger : MonoBehaviour {
 			}
 			yield return null;
 		}
+		textBoxController.SwitchTextBox();
 		stillView.gameObject.SetActive(false);
 		yield break;
 	}

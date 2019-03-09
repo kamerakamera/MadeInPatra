@@ -317,6 +317,7 @@ GameObject:
   - component: {fileID: 284839868}
   - component: {fileID: 284839867}
   - component: {fileID: 284839866}
+  - component: {fileID: 284839870}
   m_Layer: 5
   m_Name: TextBoxCanvas
   m_TagString: Untagged
@@ -406,6 +407,19 @@ RectTransform:
   m_AnchoredPosition: {x: 400, y: 225}
   m_SizeDelta: {x: 800, y: 450}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &284839870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 284839865}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72551b2fdc02ce54fbae9e5916278232, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textBox: {fileID: 284839865}
 --- !u!1 &431811901
 GameObject:
   m_ObjectHideFlags: 0
@@ -513,6 +527,7 @@ MonoBehaviour:
   stillPictures:
   - {fileID: 21300000, guid: e3f324a36b689f24db77e56e8a3ef170, type: 3}
   - {fileID: 21300000, guid: 4cb80d3c99f211349ad114126999945e, type: 3}
+  textBoxController: {fileID: 284839870}
 --- !u!82 &455129497
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1514,7 +1529,7 @@ MonoBehaviour:
   scenarioManeger: {fileID: 431811902}
   animationManeger: {fileID: 455129496}
   cursorAnim: {fileID: 274372042}
-  textBox: {fileID: 284839865}
+  textBoxController: {fileID: 284839870}
 --- !u!4 &2080223155
 Transform:
   m_ObjectHideFlags: 0

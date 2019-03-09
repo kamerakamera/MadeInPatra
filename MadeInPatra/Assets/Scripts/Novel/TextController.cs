@@ -11,7 +11,7 @@ public class TextController : MonoBehaviour {
 	private string currentText;
 	private int textCount = -1,scenarioIndex = 0;
 	[SerializeField]private Animator cursorAnim;
-	[SerializeField]private GameObject textBox;
+	[SerializeField]private TextBoxController textBoxController;
 	// Use this for initialization
 	void Start () {
 		SetNextText();
@@ -19,13 +19,13 @@ public class TextController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if(!textBox.activeSelf){
+		if(!textBoxController.TextBox.activeSelf){
 			textUpdateTime += Time.deltaTime; //TextBox非表示の時にテキストの更新時間を遅延させる
 		}
-		if(Input.GetMouseButtonDown(1)){
-			SwitchTextBox();
+		if(Input.GetMouseButtonDown(1) && !textBoxController.View){
+			textBoxController.SwitchTextBox();
 		}
-		if(textBox.activeSelf){
+		if(textBoxController.TextBox.activeSelf){
 			if(Input.GetMouseButtonDown(0)){
 				if(currentText.Length <= textCount){
 					SetNextText();
@@ -50,15 +50,6 @@ public class TextController : MonoBehaviour {
 			}else{
 				cursorAnim.SetBool("wait",false);
 			}
-		}
-	}
-
-	void SwitchTextBox(){
-		if(textBox.activeSelf){
-			textBox.SetActive(false);
-		}
-		else if(!textBox.activeSelf){
-			textBox.SetActive(true);
 		}
 	}
 
