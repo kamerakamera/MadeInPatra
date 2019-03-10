@@ -21,7 +21,7 @@ public class ScenarioManeger : MonoBehaviour {
 	}
 
 	void GetScenario(){
-		var scenarioText = Resources.Load<TextAsset>("Scenario/" + loadFileName);
+		var scenarioText = Resources.Load<TextAsset>("Scenario/" + loadFileName);//Resourceファイルからシナリオをロードする
 		if(scenarioText == null){
 			Debug.Log("load miss");
 			return;

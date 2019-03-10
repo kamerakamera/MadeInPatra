@@ -508,15 +508,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 627f2fc36c9e08f43aec98ef81f6055c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eventName:
-  - Enter
-  - Jump
-  - Cgview
-  - Cgdel
-  - Cgview
-  - Cgdel
-  eventLine: 03000000040000000500000007000000090000000b000000
-  charactorNum: 0000000000000000
   animator:
   - {fileID: 1962612258}
   - {fileID: 0}
@@ -528,6 +519,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: e3f324a36b689f24db77e56e8a3ef170, type: 3}
   - {fileID: 21300000, guid: 4cb80d3c99f211349ad114126999945e, type: 3}
   textBoxController: {fileID: 284839870}
+  animationFileName: OpeningTextOrder
 --- !u!82 &455129497
 AudioSource:
   m_ObjectHideFlags: 0
