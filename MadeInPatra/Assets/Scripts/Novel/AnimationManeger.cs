@@ -93,6 +93,7 @@ public class AnimationManeger : MonoBehaviour {
 			}
 			yield return null;
 		}
+		textBoxController.ViewCGs();
 		textBoxController.SwitchTextBox();
 		yield break;
 	}
@@ -109,6 +110,7 @@ public class AnimationManeger : MonoBehaviour {
 			}
 			yield return null;
 		}
+		textBoxController.ViewCGs();
 		textBoxController.SwitchTextBox();
 		stillView.gameObject.SetActive(false);
 		yield break;
