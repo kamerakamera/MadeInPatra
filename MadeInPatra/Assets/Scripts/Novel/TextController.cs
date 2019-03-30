@@ -13,11 +13,12 @@ public class TextController : MonoBehaviour
     private int textCount = -1, scenarioIndex = 0;
     [SerializeField] private Animator cursorAnim;
     [SerializeField] private TextBoxController textBoxController;
-    [SerializeField] private Text textLog;
+    //[SerializeField] private Text textLog;
+    [SerializeField] private TextLogManeger textLogManeger;
     // Use this for initialization
     void Start()
     {
-        textLog.text = null;
+        //textLog.text = null;
         SetNextText();
     }
 
@@ -85,7 +86,17 @@ public class TextController : MonoBehaviour
             animationManeger.ExecuteAnimation(scenarioIndex);//animation呼び出し
             scenarioIndex++;
         }
-        if (textLog.text == null)
+
+        if (nameText.text != "")
+        {
+            textLogManeger.CreateLogObj(nameText.text + "\n" + currentText);
+        }
+        else
+        {
+            textLogManeger.CreateLogObj(currentText);
+        }
+        //log機能過去版
+        /*if (textLog.text == null)
         {
             if (nameText.text != null)
             {
@@ -101,7 +112,7 @@ public class TextController : MonoBehaviour
             }
             textLog.text += currentText;
         }
-        textLog.text += "\n\n";
+        textLog.text += "\n\n";*/
         textCount = 0;
         textUpdateTime = Time.time;
         textUpdateInterval = 0.1f;
