@@ -5,6 +5,11 @@
 [Bb]uilds/
 Assets/AssetStoreTools*
 
+
+MadeInPatra/Assets/Resources**
+MadeInPatra/Assets/Sprites**
+MadeInPatra/Assets/Sounds**
+MadeInPatra/Assets/Unity Recoder**
 # Visual Studio cache directory
 .vs/
 
