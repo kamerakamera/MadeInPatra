@@ -22,7 +22,7 @@ public class TextLogManeger : MonoBehaviour
         {
             Destroy(child.gameObject);
         }
-        CloseLogWindow();
+        SwitchLogWindow();
     }
 
     // Update is called once per frame
@@ -30,7 +30,7 @@ public class TextLogManeger : MonoBehaviour
     {
         if (Input.GetKeyDown("a"))
         {
-            OpenLogWindow();
+            SwitchLogWindow();
         }
     }
 
@@ -43,14 +43,17 @@ public class TextLogManeger : MonoBehaviour
         logObj.gameObject.transform.SetParent(logContent);//logContentを親objに設定
     }
 
-    private void OpenLogWindow()
+    private void SwitchLogWindow()
     {
-        logWindow.SetActive(true);
-        scrollRect.verticalNormalizedPosition = 0;//logwindowの位置初期化
-    }
-
-    private void CloseLogWindow()
-    {
-        logWindow.SetActive(false);
+        Debug.Log("aaa");
+        if (!logWindow.gameObject.activeSelf)
+        {
+            logWindow.SetActive(true);
+            scrollRect.verticalNormalizedPosition = 0;//logwindowの位置初期化
+        }
+        else
+        {
+            logWindow.SetActive(false);
+        }
     }
 }
