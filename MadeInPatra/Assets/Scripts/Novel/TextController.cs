@@ -74,9 +74,9 @@ public class TextController : MonoBehaviour
         else
         {
             currentText = scenarioManeger.GetCurrentText(scenarioIndex);//現在の行のテキスト代入
-            if (currentText[0] == 'c')
+            if (currentText[0] == '*')
             {
-                nameText.text = currentText.Split(new string[] { "c" }, System.StringSplitOptions.None)[1];//テキストデータのuの文字の前にcharactorの名前を記載しているのでその取得
+                nameText.text = currentText.Split(new string[] { "*" }, System.StringSplitOptions.None)[1];//テキストデータのuの文字の前にcharactorの名前を記載しているのでその取得
                 currentText = currentText.Substring(nameText.text.Length + 2);//charactorNameと判別のためのｃを削除
             }
             else
