@@ -9,7 +9,8 @@ public class TextController : MonoBehaviour
     [SerializeField] private ScenarioManeger scenarioManeger;
     [SerializeField] private AnimationManeger animationManeger;
     private float textUpdateInterval = 0.1f, textUpdateTime = 0;
-    private string currentText;
+    private string currentText, huriganaText;
+    private string[] hurigana = new string[100];
     private int textCount = -1, scenarioIndex = 0;
     [SerializeField] private Animator cursorAnim;
     [SerializeField] private TextBoxController textBoxController;
@@ -83,6 +84,7 @@ public class TextController : MonoBehaviour
             {
                 nameText.text = null;
             }
+
             animationManeger.ExecuteAnimation(scenarioIndex);//animation呼び出し
             scenarioIndex++;
         }
@@ -125,10 +127,12 @@ public class TextController : MonoBehaviour
             if (currentText.Length <= textCount)
             {
                 SetNextText();
+                animationManeger.ResetAnimationSpeed();
             }
             else if (currentText.Length > textCount)
             {
                 textUpdateInterval = 0;
+                animationManeger.SkipAnimation(scenarioIndex);
             }
         }
     }
