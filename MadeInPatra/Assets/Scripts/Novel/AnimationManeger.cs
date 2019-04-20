@@ -13,19 +13,24 @@ public class AnimationManeger : MonoBehaviour
     int actionCount, cgsCount;
     float fadeVal, fadeTime = 1.6f;
     //[SerializeField]SpriteAnimationController[] spriteAnimationController;
-    [SerializeField] private Animator[] animator;
+    [SerializeField] private GameObject[] charactor;
+    private Animator[] animator = new Animator[10];
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip[] audioClip;
     [SerializeField] private Image stillView;
     [SerializeField] private Sprite[] stillPictures;
     [SerializeField] private TextBoxController textBoxController;
     private string[] splits = new string[3];//splitしたときの代入用配列
-    public string animationFileName;//アニメーションなどの命令テキストファイル
+    public string animationFileName;//アニメーションなどの命令テキストファイル 
 
     // Use this for initialization
     void Awake()
     {
         GetAnimationOrder();
+        for (int i = 0; i < charactor.Length; i++)
+        {
+            animator[i] = charactor[i].GetComponent<Animator>();
+        }
     }
 
     void Start()
@@ -65,41 +70,56 @@ public class AnimationManeger : MonoBehaviour
                 {//CG非表示
                     StartCoroutine("FadeOut");
                 }
+                else if (eventName[actionCount] == "SetCharPos")
+                {
+
+                }
                 else
                 {//Charactorアニメーション再生
-                    animator[charactorNum[actionCount]].SetTrigger(eventName[actionCount]);
+                    for (int i = 0; i < charactor.Length; i++)//再生中のほかのキャラクターのAnimationをスキップ
+                    {
+                        if (i == charactorNum[actionCount]) { continue; }
+                        charactor[i].GetComponent<Charactor>().SkipAnim();
+
+                    }
+                    charactor[charactorNum[actionCount]].GetComponent<Charactor>().Invoke(eventName[actionCount], 0);
+                    Debug.Log(charactorNum[actionCount]);
                 }
                 actionCount++;//次のアクションへ
             }
         }
     }
-
-    public void SkipAnimation(int textLineNum)
+    public void SkipCharactorAnimation()
     {
-        foreach (int num in eventLine)
+
+    }
+    /*
+        public void SkipAnimation(int textLineNum)
         {
-            if (num == textLineNum)
+            foreach (int num in eventLine)
             {
-                if (eventName[actionCount] != "Sound" || eventName[actionCount] != "Cgview" || eventName[actionCount] != "Cgdel")
+                if (num == textLineNum)
                 {
-                    animator[charactorNum[actionCount]].speed = 100;
+                    if (eventName[actionCount] != "Sound" || eventName[actionCount] != "Cgview" || eventName[actionCount] != "Cgdel")
+                    {
+                        animator[charactorNum[actionCount]].Play(animator[charactorNum[actionCount]].GetCurrentAnimatorStateInfo(0).fullPathHash, 0, 1);//これやばそう
+                    }
                 }
             }
         }
-    }
 
-    public void ResetAnimationSpeed()
-    {
-        foreach (Animator item in animator)
+        public void ResetAnimationSpeed()
         {
-            if (item == null)
+            foreach (Animator item in animator)
             {
-                return;
+                if (item == null)
+                {
+                    return;
+                }
+                item.speed = 1;
             }
-            item.speed = 1;
         }
-    }
-
+    */
     private void GetAnimationOrder()
     {
         var orderText = Resources.Load<TextAsset>("Scenario/" + animationFileName);//ordertextには命令 行数 (charactornum)で記述
