@@ -35,40 +35,26 @@ public class Charactor : MonoBehaviour
 
     public void SwichPos(string posName)
     {
-        byte[] posNameByte = System.Text.Encoding.Unicode.GetBytes(posName);
-        string logbyte = "";
-        foreach (var item in posNameByte)
-        {
-            logbyte += item.ToString();
-        }
-        Debug.Log(logbyte);
-        Debug.Log(posName);
         if (string.Equals(posName, "center"))
         {
-            Debug.Log("center");
             myPos = center;
         }
         if (string.Equals(posName, "sideLeft"))
         {
-            Debug.Log("sideLeft");
             myPos = sideLeft;
         }
         if (string.Equals(posName, "sideRight"))
         {
-            Debug.Log("sideRight");
             myPos = sideRight;
         }
         if (string.Equals(posName, "right"))
         {
-            Debug.Log("right");
             myPos = twoPosRight;
         }
         if (string.Equals(posName, "left"))
         {
-            Debug.Log("left");
             myPos = twoPosLeft;
         }
-        Debug.Log(myPos);
     }
 
     public void SkipAnim()//Animationスキップ
@@ -141,7 +127,7 @@ public class Charactor : MonoBehaviour
             if (transform.position.x - enterDist * Time.deltaTime / enterTime <= myPos.x)
             {
                 SkipAnim();
-                yield break;
+                break;
             }
             else
             {

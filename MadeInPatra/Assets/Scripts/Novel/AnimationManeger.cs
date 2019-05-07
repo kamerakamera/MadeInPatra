@@ -53,6 +53,11 @@ public class AnimationManeger : MonoBehaviour
 
     public void ExecuteAnimation(int textLineNum)
     {
+        for (int i = 0; i < charactor.Length; i++)//再生中のほかのキャラクターのAnimationをスキップ
+        {
+            if (i == arrayNum[actionCount]) { continue; }
+            charactor[i].GetComponent<Charactor>().SkipAnim();
+        }
         foreach (int num in eventLine)
         {
             if (num == textLineNum)
@@ -75,16 +80,10 @@ public class AnimationManeger : MonoBehaviour
                 }
                 else
                 {//Charactorアニメーション再生
-                    for (int i = 0; i < charactor.Length; i++)//再生中のほかのキャラクターのAnimationをスキップ
-                    {
-                        if (i == arrayNum[actionCount]) { continue; }
-                        charactor[i].GetComponent<Charactor>().SkipAnim();
-                    }
                     if (eventName[actionCount] == "ChangePos")//Charactorの位置チェンジ
                     {
                         Charactor callChar = charactor[arrayNum[actionCount]].GetComponent<Charactor>();
                         callChar.StartCoroutine(eventName[actionCount] + "Cor", charaOrder[charaOrderNum]);
-                        //Debug.Log(charaOrder[charaOrderNum]);
                         charaOrderNum++;
                     }
                     else
