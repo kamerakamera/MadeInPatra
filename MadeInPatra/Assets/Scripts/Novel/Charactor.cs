@@ -8,6 +8,7 @@ public class Charactor : MonoBehaviour
     public static Vector3 twoPosRight = new Vector3(-50f, 150f, 1000f), twoPosLeft = new Vector3(850f, 150f, 1000f);
     private float enterDist = 150f, enterTime = 1f;
     private float hopDist = 100f, hopTime = 0.04f;//パラメータ調整頑張って
+    private float changePosTime = 1f;
     private Vector3 myPos;
     [SerializeField]
     private string firstPosName;
@@ -26,31 +27,48 @@ public class Charactor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (Input.GetKeyDown("t"))
+        {
+            StartCoroutine(ChangePosCor("right"));
+        }
     }
 
     public void SwichPos(string posName)
     {
-        if (posName == "center")
+        byte[] posNameByte = System.Text.Encoding.Unicode.GetBytes(posName);
+        string logbyte = "";
+        foreach (var item in posNameByte)
         {
+            logbyte += item.ToString();
+        }
+        Debug.Log(logbyte);
+        Debug.Log(posName);
+        if (string.Equals(posName, "center"))
+        {
+            Debug.Log("center");
             myPos = center;
         }
-        if (posName == "sideLeft")
+        if (string.Equals(posName, "sideLeft"))
         {
+            Debug.Log("sideLeft");
             myPos = sideLeft;
         }
-        if (posName == "sideRight")
+        if (string.Equals(posName, "sideRight"))
         {
+            Debug.Log("sideRight");
             myPos = sideRight;
         }
-        if (posName == "right")
+        if (string.Equals(posName, "right"))
         {
+            Debug.Log("right");
             myPos = twoPosRight;
         }
-        if (posName == "left")
+        if (string.Equals(posName, "left"))
         {
+            Debug.Log("left");
             myPos = twoPosLeft;
         }
+        Debug.Log(myPos);
     }
 
     public void SkipAnim()//Animationスキップ
@@ -63,6 +81,49 @@ public class Charactor : MonoBehaviour
             IsAnim = false;
         }
         transform.position = myPos;
+    }
+
+    public void ChangePos(string targetString)
+    {
+
+    }
+
+    public IEnumerator ChangePosCor(string targetString)
+    {
+        SwichPos(targetString);//なんかちゃんと変わってくれない
+        float moveDistance = myPos.x - transform.position.x;
+        IsAnim = true;
+        while (IsAnim)
+        {
+            Debug.Log(moveDistance);
+            if (moveDistance < 0)//moveDistanceが正の時
+            {
+                Debug.Log("move!");
+                if (transform.position.x + moveDistance * Time.deltaTime / changePosTime <= myPos.x)
+                {
+                    break;
+                }
+                else
+                {
+                    transform.position += new Vector3(moveDistance * Time.deltaTime / changePosTime, 0, 0);
+                }
+            }
+            else//moveDistanceが負の時
+            {
+                if (transform.position.x + moveDistance * Time.deltaTime / changePosTime >= myPos.x)
+                {
+                    break;
+                }
+                else
+                {
+                    transform.position += new Vector3(moveDistance * Time.deltaTime / changePosTime, 0, 0);
+                }
+            }
+            yield return null;
+        }
+        SkipAnim();
+        yield break;
+
     }
 
     public void Enter()//出現Animation
@@ -93,6 +154,7 @@ public class Charactor : MonoBehaviour
 
     public void Hop()//ジャンプAnimation
     {
+        IsAnim = true;
         StartCoroutine(HopCor());
     }
 
@@ -100,9 +162,9 @@ public class Charactor : MonoBehaviour
     {
         int hopCount = 0;
         bool up = true, down = false;
-        while (hopCount < 2)
+        while (hopCount < 2 && IsAnim)
         {
-            while (up)
+            while (up && IsAnim)
             {
                 if (transform.position.y + hopDist * Time.deltaTime / hopTime / 4 <= myPos.y + hopDist)
                 {
@@ -117,7 +179,7 @@ public class Charactor : MonoBehaviour
                 }
 
             }
-            while (down)
+            while (down && IsAnim)
             {
                 if (transform.position.y - hopDist * Time.deltaTime / hopTime / 4 >= myPos.y)
                 {

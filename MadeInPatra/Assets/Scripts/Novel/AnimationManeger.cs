@@ -9,7 +9,7 @@ public class AnimationManeger : MonoBehaviour
     //[SerializeField]int eventAmount;
     private int audioClipCount;
     string[] eventName;
-    int[] eventLine, charactorNum;
+    int[] eventLine, arrayNum;
     int actionCount, cgsCount;
     float fadeVal, fadeTime = 1.6f;
     //[SerializeField]SpriteAnimationController[] spriteAnimationController;
@@ -20,12 +20,15 @@ public class AnimationManeger : MonoBehaviour
     [SerializeField] private Image stillView;
     [SerializeField] private Sprite[] stillPictures;
     [SerializeField] private TextBoxController textBoxController;
-    private string[] splits = new string[3];//splitしたときの代入用配列
+    private string[] splits = new string[5];//splitしたときの代入用配列
     public string animationFileName;//アニメーションなどの命令テキストファイル 
+    private string[] charaOrder;
+    private int charaOrderNum;
 
     // Use this for initialization
     void Awake()
     {
+        charaOrderNum = 0;
         GetAnimationOrder();
         for (int i = 0; i < charactor.Length; i++)
         {
@@ -56,13 +59,13 @@ public class AnimationManeger : MonoBehaviour
             {
                 if (eventName[actionCount] == "Sound")
                 {//音声再生
-                    audioSource.clip = audioClip[charactorNum[actionCount]];
+                    audioSource.clip = audioClip[arrayNum[actionCount]];
                     audioSource.Play();
                     //audioClipCount++;
                 }
                 else if (eventName[actionCount] == "Cgview")
                 {//CG表示
-                    stillView.sprite = stillPictures[charactorNum[actionCount]];
+                    stillView.sprite = stillPictures[arrayNum[actionCount]];
                     StartCoroutine("FadeIn");
                     //cgsCount++;
                 }
@@ -70,28 +73,29 @@ public class AnimationManeger : MonoBehaviour
                 {//CG非表示
                     StartCoroutine("FadeOut");
                 }
-                else if (eventName[actionCount] == "SetCharPos")
-                {
-
-                }
                 else
                 {//Charactorアニメーション再生
                     for (int i = 0; i < charactor.Length; i++)//再生中のほかのキャラクターのAnimationをスキップ
                     {
-                        if (i == charactorNum[actionCount]) { continue; }
+                        if (i == arrayNum[actionCount]) { continue; }
                         charactor[i].GetComponent<Charactor>().SkipAnim();
-
                     }
-                    charactor[charactorNum[actionCount]].GetComponent<Charactor>().Invoke(eventName[actionCount], 0);
-                    Debug.Log(charactorNum[actionCount]);
+                    if (eventName[actionCount] == "ChangePos")//Charactorの位置チェンジ
+                    {
+                        Charactor callChar = charactor[arrayNum[actionCount]].GetComponent<Charactor>();
+                        callChar.StartCoroutine(eventName[actionCount] + "Cor", charaOrder[charaOrderNum]);
+                        //Debug.Log(charaOrder[charaOrderNum]);
+                        charaOrderNum++;
+                    }
+                    else
+                    {
+                        charactor[arrayNum[actionCount]].GetComponent<Charactor>().Invoke(eventName[actionCount], 0);
+                        Debug.Log(arrayNum[actionCount]);
+                    }
                 }
                 actionCount++;//次のアクションへ
             }
         }
-    }
-    public void SkipCharactorAnimation()
-    {
-
     }
     /*
         public void SkipAnimation(int textLineNum)
@@ -102,7 +106,7 @@ public class AnimationManeger : MonoBehaviour
                 {
                     if (eventName[actionCount] != "Sound" || eventName[actionCount] != "Cgview" || eventName[actionCount] != "Cgdel")
                     {
-                        animator[charactorNum[actionCount]].Play(animator[charactorNum[actionCount]].GetCurrentAnimatorStateInfo(0).fullPathHash, 0, 1);//これやばそう
+                        animator[arrayNum[actionCount]].Play(animator[arrayNum[actionCount]].GetCurrentAnimatorStateInfo(0).fullPathHash, 0, 1);//これやばそう
                     }
                 }
             }
@@ -122,26 +126,29 @@ public class AnimationManeger : MonoBehaviour
     */
     private void GetAnimationOrder()
     {
-        var orderText = Resources.Load<TextAsset>("Scenario/" + animationFileName);//ordertextには命令 行数 (charactornum)で記述
+        var orderText = Resources.Load<TextAsset>("Scenario/" + animationFileName);//ordertextには命令 行数 (arrayNum)で記述
         if (orderText == null)
         {
             Debug.Log("orderText load error");
             return;
         }
-        eventName = orderText.text.Split(new string[] { "\n" }, System.StringSplitOptions.None);//それぞれの命令は改行で区切る
+        eventName = orderText.text.Split(new string[] { "\r\n" }, System.StringSplitOptions.None);//それぞれの命令は改行で区切る
         eventLine = new int[eventName.Length];//eventの数だけ要素数確保
-        charactorNum = new int[eventName.Length];//上と同じ
+        arrayNum = new int[eventName.Length];//上と同じ
+        charaOrder = new string[eventName.Length];
         for (int i = 0; i < eventName.Length; i++)
         {
             splits = eventName[i].Split(new string[] { " " }, System.StringSplitOptions.None);//Split用配列に代入
             eventName[i] = splits[0];//event名代入
             eventLine[i] = int.Parse(splits[1]);//event行数
-            charactorNum[i] = int.Parse(splits[2]);//charactor,画像,音声などを要素数で指定
-            for (int j = 0; j < 3; j++)
+            arrayNum[i] = int.Parse(splits[2]);//charactor,画像,音声などを要素数で指定
+            if (eventName[i] == "ChangePos") { charaOrder[charaOrderNum] = splits[3]; charaOrderNum++; }
+            for (int j = 0; j < splits.Length; j++)
             {
                 splits[j] = string.Empty;
             }
         }
+        charaOrderNum = 0;
     }
 
     private IEnumerator FadeIn()
