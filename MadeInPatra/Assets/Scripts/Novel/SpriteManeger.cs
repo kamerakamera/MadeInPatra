@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AnimationSpriteManeger : MonoBehaviour
+public class SpriteManeger : MonoBehaviour
 {
     [SerializeField]
     Charactor[] charactors;
@@ -28,9 +28,7 @@ public class AnimationSpriteManeger : MonoBehaviour
                 Resources.UnloadAsset(sprites[j]);
             }
             charactors[i].SetAnimSprite(sprites);
-            sprites = new Sprite[expressionName.Length];
         }
-
     }
     void Start()
     {

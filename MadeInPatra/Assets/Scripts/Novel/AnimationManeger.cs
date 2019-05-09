@@ -6,13 +6,11 @@ using UnityEngine.UI;
 
 public class AnimationManeger : MonoBehaviour
 {
-    //[SerializeField]int eventAmount;
     private int audioClipCount;
     string[] eventName;
     int[] eventLine, arrayNum;
     int actionCount, cgsCount;
     float fadeVal, fadeTime = 1.6f;
-    //[SerializeField]SpriteAnimationController[] spriteAnimationController;
     [SerializeField] private GameObject[] charactor;
     private Animator[] animator = new Animator[10];
     [SerializeField] private AudioSource audioSource;
@@ -93,7 +91,6 @@ public class AnimationManeger : MonoBehaviour
                     else
                     {
                         charactor[arrayNum[actionCount]].GetComponent<Charactor>().Invoke(eventName[actionCount], 0);
-                        Debug.Log(arrayNum[actionCount]);
                     }
                 }
                 actionCount++;//次のアクションへ

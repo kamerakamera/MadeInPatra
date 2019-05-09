@@ -64,7 +64,6 @@ public class Charactor : MonoBehaviour
 
     public void SkipAnim()//Animationスキップ
     {
-        Debug.Log(gameObject);
         if (IsAnim)
         {
             if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Wait"))
@@ -78,11 +77,9 @@ public class Charactor : MonoBehaviour
 
     public IEnumerator ChangeSpriteCor(string nextExpression)
     {
-        Debug.Log(nextExpression);
         beforeSprite.sprite = nowSprite.sprite;
         nowSprite.sprite = changeSprite[nextExpression];
         animator.Play("ChangeSprite");
-        Debug.Log("seikou!");
         yield break;
     }
 
@@ -93,10 +90,8 @@ public class Charactor : MonoBehaviour
         IsAnim = true;
         while (IsAnim)
         {
-            Debug.Log(moveDistance);
             if (moveDistance < 0)//moveDistanceが正の時
             {
-                Debug.Log("move!");
                 if (transform.position.x + moveDistance * Time.deltaTime / changePosTime <= myPos.x)
                 {
                     break;
