@@ -55,7 +55,7 @@ public class AnimationManeger : MonoBehaviour
     {
         for (int i = 0; i < charactor.Length; i++)//再生中のほかのキャラクターのAnimationをスキップ
         {
-            if (i == arrayNum[actionCount]) { continue; }
+            //if (i == arrayNum[actionCount]) { continue; }
             charactor[i].GetComponent<Charactor>().SkipAnim();
         }
         foreach (int num in eventLine)
@@ -78,12 +78,16 @@ public class AnimationManeger : MonoBehaviour
                 {//CG非表示
                     StartCoroutine("FadeOut");
                 }
+                else if (eventName[actionCount] == "ChangeSprite")
+                {
+                    charactor[arrayNum[actionCount]].GetComponent<Charactor>().StartCoroutine("ChangeSpriteCor", charaOrder[charaOrderNum]);
+                    charaOrderNum++;
+                }
                 else
                 {//Charactorアニメーション再生
                     if (eventName[actionCount] == "ChangePos")//Charactorの位置チェンジ
                     {
-                        Charactor callChar = charactor[arrayNum[actionCount]].GetComponent<Charactor>();
-                        callChar.StartCoroutine(eventName[actionCount] + "Cor", charaOrder[charaOrderNum]);
+                        charactor[arrayNum[actionCount]].GetComponent<Charactor>().StartCoroutine("ChangePosCor", charaOrder[charaOrderNum]);
                         charaOrderNum++;
                     }
                     else
@@ -141,7 +145,7 @@ public class AnimationManeger : MonoBehaviour
             eventName[i] = splits[0];//event名代入
             eventLine[i] = int.Parse(splits[1]);//event行数
             arrayNum[i] = int.Parse(splits[2]);//charactor,画像,音声などを要素数で指定
-            if (eventName[i] == "ChangePos") { charaOrder[charaOrderNum] = splits[3]; charaOrderNum++; }
+            if (eventName[i] == "ChangePos" || eventName[i] == "ChangeSprite") { charaOrder[charaOrderNum] = splits[3]; charaOrderNum++; }
             for (int j = 0; j < splits.Length; j++)
             {
                 splits[j] = string.Empty;

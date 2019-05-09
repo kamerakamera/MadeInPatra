@@ -4,6 +4,14 @@ using UnityEngine;
 
 public class Charactor : MonoBehaviour
 {
+    Dictionary<string, Vector3> charactorPos = new Dictionary<string, Vector3>{
+        {"center",new Vector3(400f, 150f, 1000f)},
+        {"sideLeft",new Vector3(-500f, 150f, 1000f)},
+        {"sideRight",new Vector3(1300f, 150f, 1000f)},
+        {"right",new Vector3(-50f, 150f, 1000f)},
+        {"left",new Vector3(850f, 150f, 1000f)},
+        {"out",new Vector3(1000f,1000f,1000f)}
+    };
     public static Vector3 center = new Vector3(400f, 150f, 1000f), sideLeft = new Vector3(-500f, 150f, 1000f), sideRight = new Vector3(1300f, 150f, 1000f);
     public static Vector3 twoPosRight = new Vector3(-50f, 150f, 1000f), twoPosLeft = new Vector3(850f, 150f, 1000f);
     private float enterDist = 150f, enterTime = 1f;
@@ -15,46 +23,39 @@ public class Charactor : MonoBehaviour
     public bool IsAnim { get; private set; }
     [SerializeField]
     private Animator animator;
+    [SerializeField]
+    SpriteRenderer nowSprite, beforeSprite;
+    [SerializeField]
+    Sprite[] spriteList = new Sprite[14];
+    string[] expressionName = new string[]{
+        "normal"/*通常*/,"smile"/*笑顔*/,"closeEyes"/*目をつむる*/,"sumgFace"/*どや顔*/,"impatience"/*焦り*/,"surprise"/*驚き*/,"troubled"/*困り顔*/,"sadness"/*悲しみ*/,"anger"/*怒り*/,"doubt"/*疑問*/,"beforeButtle"/*戦闘前*/,"damned"/*呆れ顔*/,"grin"/*にやけ顔*/,"ashamed"/*恥じらい*/
+    };
+    Dictionary<string, Sprite> changeSprite = new Dictionary<string, Sprite>();
+
 
     // Start is called before the first frame update
     void Start()
     {
         //test用
-        SwichPos(firstPosName);
+        //SwichPos(firstPosName);
+        animator.Play("Wait");
         SkipAnim();
+        for (int i = 0; i < expressionName.Length; i++)
+        {
+            if (spriteList[i] == null) continue;
+            changeSprite.Add(expressionName[i], spriteList[i]);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown("t"))
-        {
-            StartCoroutine(ChangePosCor("right"));
-        }
+
     }
 
     public void SwichPos(string posName)
     {
-        if (string.Equals(posName, "center"))
-        {
-            myPos = center;
-        }
-        if (string.Equals(posName, "sideLeft"))
-        {
-            myPos = sideLeft;
-        }
-        if (string.Equals(posName, "sideRight"))
-        {
-            myPos = sideRight;
-        }
-        if (string.Equals(posName, "right"))
-        {
-            myPos = twoPosRight;
-        }
-        if (string.Equals(posName, "left"))
-        {
-            myPos = twoPosLeft;
-        }
+        myPos = charactorPos[posName];
     }
 
     public void SkipAnim()//Animationスキップ
@@ -62,21 +63,28 @@ public class Charactor : MonoBehaviour
         Debug.Log(gameObject);
         if (IsAnim)
         {
-            AnimatorStateInfo info = animator.GetCurrentAnimatorStateInfo(0);
-            animator.Play(info.fullPathHash, 0, 1);
+            if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Wait"))
+            {
+                animator.Play("Idle");
+            }
             IsAnim = false;
         }
         transform.position = myPos;
     }
 
-    public void ChangePos(string targetString)
+    public IEnumerator ChangeSpriteCor(string nextExpression)
     {
-
+        Debug.Log(nextExpression);
+        beforeSprite.sprite = nowSprite.sprite;
+        nowSprite.sprite = changeSprite[nextExpression];
+        animator.Play("ChangeSprite");
+        Debug.Log("seikou!");
+        yield break;
     }
 
     public IEnumerator ChangePosCor(string targetString)
     {
-        SwichPos(targetString);//なんかちゃんと変わってくれない
+        SwichPos(targetString);
         float moveDistance = myPos.x - transform.position.x;
         IsAnim = true;
         while (IsAnim)
@@ -107,15 +115,13 @@ public class Charactor : MonoBehaviour
             }
             yield return null;
         }
-        SkipAnim();
-        yield break;
-
+        SkipAnim(); yield break;
     }
 
     public void Enter()//出現Animation
     {
         IsAnim = true;
-        animator.SetTrigger("Enter");
+        animator.Play("Enter");
         StartCoroutine(EnterCor());
     }
 
