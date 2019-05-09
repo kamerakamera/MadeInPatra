@@ -28,7 +28,7 @@ public class Charactor : MonoBehaviour
     [SerializeField]
     Sprite[] spriteList = new Sprite[14];
     string[] expressionName = new string[]{
-        "normal"/*通常*/,"smile"/*笑顔*/,"closeEyes"/*目をつむる*/,"sumgFace"/*どや顔*/,"impatience"/*焦り*/,"surprise"/*驚き*/,"troubled"/*困り顔*/,"sadness"/*悲しみ*/,"anger"/*怒り*/,"doubt"/*疑問*/,"beforeButtle"/*戦闘前*/,"damned"/*呆れ顔*/,"grin"/*にやけ顔*/,"ashamed"/*恥じらい*/
+        "normal"/*通常*/,"smile"/*笑顔*/,"closeEyes"/*目をつむる*/,"sumg"/*どや顔*/,"impatience"/*焦り*/,"surprise"/*驚き*/,"troubled"/*困り顔*/,"sadness"/*悲しみ*/,"anger"/*怒り*/,"doubt"/*疑問*/,"beforeButtle"/*戦闘前*/,"damned"/*呆れ顔*/,"grin"/*にやけ顔*/,"ashamed"/*恥じらい*/
     };
     Dictionary<string, Sprite> changeSprite = new Dictionary<string, Sprite>();
 
@@ -36,8 +36,6 @@ public class Charactor : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //test用
-        //SwichPos(firstPosName);
         animator.Play("Wait");
         SkipAnim();
         for (int i = 0; i < expressionName.Length; i++)
@@ -45,12 +43,18 @@ public class Charactor : MonoBehaviour
             if (spriteList[i] == null) continue;
             changeSprite.Add(expressionName[i], spriteList[i]);
         }
+        nowSprite.sprite = changeSprite[expressionName[0]];
     }
 
     // Update is called once per frame
     void Update()
     {
 
+    }
+
+    public void SetAnimSprite(Sprite[] sprites)
+    {
+        spriteList = sprites;
     }
 
     public void SwichPos(string posName)
