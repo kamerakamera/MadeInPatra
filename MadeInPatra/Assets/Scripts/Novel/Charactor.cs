@@ -27,9 +27,7 @@ public class Charactor : MonoBehaviour
     SpriteRenderer nowSprite, beforeSprite;
     [SerializeField]
     Sprite[] spriteList = new Sprite[14];
-    string[] expressionName = new string[]{
-        "normal"/*通常*/,"smile"/*笑顔*/,"closeEyes"/*目をつむる*/,"sumg"/*どや顔*/,"impatience"/*焦り*/,"surprise"/*驚き*/,"troubled"/*困り顔*/,"sadness"/*悲しみ*/,"anger"/*怒り*/,"doubt"/*疑問*/,"beforeButtle"/*戦闘前*/,"damned"/*呆れ顔*/,"grin"/*にやけ顔*/,"ashamed"/*恥じらい*/
-    };
+
     Dictionary<string, Sprite> changeSprite = new Dictionary<string, Sprite>();
 
 
@@ -38,12 +36,12 @@ public class Charactor : MonoBehaviour
     {
         animator.Play("Wait");
         SkipAnim();
-        for (int i = 0; i < expressionName.Length; i++)
+        for (int i = 0; i < StringProperty.expressionName.Length; i++)
         {
             if (spriteList[i] == null) continue;
-            changeSprite.Add(expressionName[i], spriteList[i]);
+            changeSprite.Add(StringProperty.expressionName[i], spriteList[i]);
         }
-        nowSprite.sprite = changeSprite[expressionName[0]];
+        nowSprite.sprite = changeSprite[StringProperty.expressionName[0]];
     }
 
     // Update is called once per frame
