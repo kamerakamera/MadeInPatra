@@ -6,6 +6,8 @@ public class TitleUIManeger : MonoBehaviour
 {
     [SerializeField]
     private GameObject continuePanel, stillsViewPanel;
+    [SerializeField]
+    private Animator stillViewsAnimator;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,7 +32,7 @@ public class TitleUIManeger : MonoBehaviour
 
     public void OnStillsViewButtonClick()
     {
-
+        stillViewsAnimator.Play("MoveStill");
     }
 
     public void OnMessagesButtonClick()
