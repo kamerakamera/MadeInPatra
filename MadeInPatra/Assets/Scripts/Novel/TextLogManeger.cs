@@ -36,7 +36,7 @@ public class TextLogManeger : MonoBehaviour
 
     public void CreateLogObj(string str)
     {
-        logObj = Instantiate(logObjectPre,logContent);
+        logObj = Instantiate(logObjectPre, logContent);
         Text logText = logObj.GetComponent<Text>();
         logText.text = str;
         logText.rectTransform.sizeDelta = new Vector2(logText.preferredWidth, logText.preferredHeight);//logobjのサイズを設定
@@ -45,7 +45,6 @@ public class TextLogManeger : MonoBehaviour
 
     private void SwitchLogWindow()
     {
-        Debug.Log("aaa");
         if (!logWindow.gameObject.activeSelf)
         {
             logWindow.SetActive(true);

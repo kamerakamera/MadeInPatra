@@ -76,6 +76,11 @@ public class AnimationManeger : MonoBehaviour
                 {//CG非表示
                     StartCoroutine("FadeOut");
                 }
+
+                else if (eventName[actionCount] == "SetMypos")
+                {
+                    charactor[arrayNum[actionCount]].GetComponent<Charactor>().SwichPos(charaOrder[charaOrderNum]);
+                }
                 else if (eventName[actionCount] == "ChangeSprite")
                 {
                     charactor[arrayNum[actionCount]].GetComponent<Charactor>().StartCoroutine("ChangeSpriteCor", charaOrder[charaOrderNum]);

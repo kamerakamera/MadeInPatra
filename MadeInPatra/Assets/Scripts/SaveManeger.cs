@@ -6,18 +6,51 @@ using UnityEngine.UI;
 public class SaveManeger : MonoBehaviour
 {
     [SerializeField]
-    private Image[] stills;
+    private GameObject[] stills = new GameObject[StringProperty.stillNames.Length];//Still表示関数内にPlayerPrefにKey追加
     [SerializeField]
-    private Button[] loadButton;//戦闘終了後にPlayerPrefにKey追加
+    private Button[] loadButton = new Button[StringProperty.loadSceneName.Length];//Scene開始時にPlayerPrefに追加
+    int checkStillNum, checkContinueNum;
     private void Awake()
     {
-        for (int i = 0; i < StringProperty.stillNames.Length; i++)
+        //PlayerPrefs.SetString(StringProperty.stillNames[5], StringProperty.stillNames[5]);
+        //PlayerPrefs.Save();
+        checkStillNum = 0;
+        checkContinueNum = 0;
+        while (checkStillNum < StringProperty.stillNames.Length || checkContinueNum < StringProperty.loadSceneName.Length)
         {
-            if (PlayerPrefs.HasKey(StringProperty.stillNames[i]))
+            if (checkStillNum < StringProperty.stillNames.Length)
             {
-                //Still表示
+                if (PlayerPrefs.HasKey(StringProperty.stillNames[checkStillNum]))
+                {
+                    //Still表示
+                    stills[checkStillNum].SetActive(true);
+                    Debug.Log(StringProperty.stillNames[checkStillNum] + "のStilを所持しています！");
+                }
+                else
+                {
+                    stills[checkStillNum].SetActive(false);
+                    Debug.Log(StringProperty.stillNames[checkStillNum] + "のStilを所持していません！");
+                }
+                checkStillNum++;
+            }
+
+            if (checkContinueNum < StringProperty.loadSceneName.Length)
+            {
+                if (PlayerPrefs.HasKey(StringProperty.loadSceneName[checkContinueNum]))
+                {
+                    //Still表示
+                    //loadButton[checkContinueNum].enabled = true;
+                    Debug.Log(StringProperty.stillNames[checkContinueNum] + "のデータを所持しています！");
+                }
+                else
+                {
+                    //loadButton[checkContinueNum].enabled = false;
+                    Debug.Log(StringProperty.stillNames[checkContinueNum] + "のデータを所持していません！");
+                }
+                checkContinueNum++;
             }
         }
+        //PlayerPrefs.DeleteAll();//デバッグ用
     }
     // Start is called before the first frame update
     void Start()
