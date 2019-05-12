@@ -12,8 +12,8 @@ public class Charactor : MonoBehaviour
         {"left",new Vector3(850f, 150f, 1000f)},
         {"out",new Vector3(1000f,1000f,1000f)}
     };
-    public static Vector3 center = new Vector3(400f, 150f, 1000f), sideLeft = new Vector3(-500f, 150f, 1000f), sideRight = new Vector3(1300f, 150f, 1000f);
-    public static Vector3 twoPosRight = new Vector3(-50f, 150f, 1000f), twoPosLeft = new Vector3(850f, 150f, 1000f);
+    //public static Vector3 center = new Vector3(400f, 150f, 1000f), sideLeft = new Vector3(-500f, 150f, 1000f), sideRight = new Vector3(1300f, 150f, 1000f);
+    //public static Vector3 twoPosRight = new Vector3(-50f, 150f, 1000f), twoPosLeft = new Vector3(850f, 150f, 1000f);
     private float enterDist = 150f, enterTime = 1f;
     private float hopDist = 100f, hopTime = 0.04f;//パラメータ調整頑張って
     private float changePosTime = 1f;
@@ -26,13 +26,24 @@ public class Charactor : MonoBehaviour
     [SerializeField]
     SpriteRenderer nowSprite, beforeSprite;
     [SerializeField]
-    Sprite[] spriteList = new Sprite[14];
+    Sprite[] spriteList = new Sprite[StringProperty.expressionName.Length];
 
     Dictionary<string, Sprite> changeSprite = new Dictionary<string, Sprite>();
 
 
     // Start is called before the first frame update
     void Start()
+    {
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
+
+    public void SetUpSprite()
     {
         animator.Play("Wait");
         SkipAnim();
@@ -44,15 +55,10 @@ public class Charactor : MonoBehaviour
         nowSprite.sprite = changeSprite[StringProperty.expressionName[0]];
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     public void SetAnimSprite(Sprite[] sprites)
     {
         spriteList = sprites;
+        SetUpSprite();
     }
 
     public void SwichPos(string posName)
@@ -84,6 +90,7 @@ public class Charactor : MonoBehaviour
     public IEnumerator ChangePosCor(string targetString)
     {
         SwichPos(targetString);
+        Debug.Log(myPos);
         float moveDistance = myPos.x - transform.position.x;
         IsAnim = true;
         while (IsAnim)

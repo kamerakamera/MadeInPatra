@@ -12,6 +12,10 @@ public class SpriteManeger : MonoBehaviour
     // Start is called before the first frame update
     private void Awake()
     {
+
+    }
+    void Start()
+    {
         for (int i = 0; i < charactors.Length; i++)
         {
             for (int j = 0; j < StringProperty.expressionName.Length; j++)
@@ -27,10 +31,6 @@ public class SpriteManeger : MonoBehaviour
             charactors[i].SetAnimSprite(sprites);
             sprites = new Sprite[StringProperty.expressionName.Length];
         }
-    }
-    void Start()
-    {
-
     }
 
     // Update is called once per frame
