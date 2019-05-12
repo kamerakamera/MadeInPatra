@@ -2,16 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TitleUIManeger : MonoBehaviour
+public class TitleSceneManeger : MonoBehaviour
 {
     [SerializeField]
-    private GameObject continuePanel, stillsViewPanel;
+    private GameObject startMenuPanel, continuePanel, stillsViewPanel;
     [SerializeField]
-    private Animator stillViewsAnimator;
+    private Animator stillViewsAnimator, startManuAnimator;
     // Start is called before the first frame update
+
+    private void Awake()
+    {
+        continuePanel.SetActive(false);
+        stillsViewPanel.SetActive(false);
+    }
     void Start()
     {
-
+        stillViewsAnimator.Play("MoveStill");
     }
 
     // Update is called once per frame
@@ -22,22 +28,23 @@ public class TitleUIManeger : MonoBehaviour
 
     public void OnStartButtonClick()
     {
-
+        Debug.Log("");
     }
 
     public void OnContinueButtonClick()
     {
-
+        Debug.Log("");
     }
 
-    public void OnStillsViewButtonClick()
+    public void OnCGsViewButtonClick()
     {
         stillViewsAnimator.Play("MoveStill");
+        Debug.Log("");
     }
 
     public void OnMessagesButtonClick()
     {
-
+        Debug.Log("");
     }
 
     public void OnReturnTitleButtonClick()
@@ -45,8 +52,8 @@ public class TitleUIManeger : MonoBehaviour
 
     }
 
-    public void EndButtonClick()
+    public void OnEndButtonClick()
     {
-
+        Debug.Log("");
     }
 }
