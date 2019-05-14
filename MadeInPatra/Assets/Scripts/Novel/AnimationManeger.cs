@@ -78,9 +78,10 @@ public class AnimationManeger : MonoBehaviour
                     StartCoroutine("FadeOut");
                 }
 
-                else if (eventName[actionCount] == "SetMypos")
+                else if (eventName[actionCount] == "SwichPos")
                 {
                     charactor[arrayNum[actionCount]].GetComponent<Charactor>().SwichPos(charaOrder[charaOrderNum]);
+                    charaOrderNum++;
                 }
                 else if (eventName[actionCount] == "ChangeSprite")
                 {
@@ -148,7 +149,7 @@ public class AnimationManeger : MonoBehaviour
             eventName[i] = splits[0];//event名代入
             eventLine[i] = int.Parse(splits[1]);//event行数
             arrayNum[i] = int.Parse(splits[2]);//charactor,画像,音声などを要素数で指定
-            if (eventName[i] == "ChangePos" || eventName[i] == "ChangeSprite") { charaOrder[charaOrderNum] = splits[3]; charaOrderNum++; }
+            if (eventName[i] == "ChangePos" || eventName[i] == "ChangeSprite" || eventName[i] == "SwichPos") { charaOrder[charaOrderNum] = splits[3]; charaOrderNum++; }
             for (int j = 0; j < splits.Length; j++)
             {
                 splits[j] = string.Empty;
