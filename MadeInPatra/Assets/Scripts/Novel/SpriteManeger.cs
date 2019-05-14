@@ -20,10 +20,10 @@ public class SpriteManeger : MonoBehaviour
         {
             for (int j = 0; j < StringProperty.expressionName.Length; j++)
             {
-                sprites[j] = Resources.Load<Sprite>("Charactors/" + charactors[i].gameObject.name + "/" + charactors[i].gameObject.name + "_" + StringProperty.expressionName[j]);
+                sprites[j] = Resources.Load<Sprite>("Charactors/" + charactors[i].gameObject.name + "/" + StringProperty.expressionName[j]);
                 if (sprites[j] == null)
                 {
-                    Debug.Log(charactors[i].gameObject.name + "には" + StringProperty.expressionName[j] + "の画像がありません");
+                    //Debug.Log(charactors[i].gameObject.name + "には" + StringProperty.expressionName[j] + "の画像がありません");
                     continue;
                 }
                 Resources.UnloadAsset(sprites[j]);

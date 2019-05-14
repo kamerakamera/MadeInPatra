@@ -17,7 +17,7 @@ public class Charactor : MonoBehaviour
     private float enterDist = 150f, enterTime = 1f;
     private float hopDist = 100f, hopTime = 0.04f;//パラメータ調整頑張って
     private float changePosTime = 1f;
-    private Vector3 myPos;
+    private Vector3 myPos = new Vector3(400f, 150f, 1000f);
     [SerializeField]
     private string firstPosName;
     public bool IsAnim { get; private set; }
@@ -25,7 +25,6 @@ public class Charactor : MonoBehaviour
     private Animator animator;
     [SerializeField]
     SpriteRenderer nowSprite, beforeSprite;
-    [SerializeField]
     Sprite[] spriteList = new Sprite[StringProperty.expressionName.Length];
 
     Dictionary<string, Sprite> changeSprite = new Dictionary<string, Sprite>();
@@ -34,7 +33,7 @@ public class Charactor : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        //myPos = charactorPos["center"];
     }
 
     // Update is called once per frame
@@ -126,6 +125,7 @@ public class Charactor : MonoBehaviour
     {
         IsAnim = true;
         animator.Play("Enter");
+        Debug.Log(myPos);
         StartCoroutine(EnterCor());
     }
 

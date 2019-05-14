@@ -12,8 +12,13 @@ public class SaveManeger : MonoBehaviour
     int checkStillNum, checkContinueNum;
     private void Awake()
     {
+        PlayerPrefs.DeleteAll();
         //PlayerPrefs.SetString(StringProperty.stillNames[5], StringProperty.stillNames[5]);
         //PlayerPrefs.Save();
+    }
+    // Start is called before the first frame update
+    void Start()
+    {
         checkStillNum = 0;
         checkContinueNum = 0;
         while (checkStillNum < StringProperty.stillNames.Length || checkContinueNum < StringProperty.loadSceneName.Length)
@@ -50,12 +55,6 @@ public class SaveManeger : MonoBehaviour
                 checkContinueNum++;
             }
         }
-        //PlayerPrefs.DeleteAll();//デバッグ用
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
-
     }
 
     // Update is called once per frame

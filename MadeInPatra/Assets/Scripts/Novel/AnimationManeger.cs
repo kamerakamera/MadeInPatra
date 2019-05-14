@@ -69,6 +69,7 @@ public class AnimationManeger : MonoBehaviour
                 else if (eventName[actionCount] == "Cgview")
                 {//CG表示
                     stillView.sprite = stillPictures[arrayNum[actionCount]];
+                    PlayerPrefs.SetString(stillPictures[arrayNum[actionCount]].name, stillPictures[arrayNum[actionCount]].name);
                     StartCoroutine("FadeIn");
                     //cgsCount++;
                 }
