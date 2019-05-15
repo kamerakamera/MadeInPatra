@@ -10,7 +10,6 @@ public class AnimationManeger : MonoBehaviour
     string[] eventName;
     int[] eventLine, arrayNum;
     int actionCount, cgsCount;
-    float fadeVal, fadeTime = 1.6f;
     [SerializeField] private GameObject[] charactor;
     private Animator[] animator = new Animator[10];
     [SerializeField] private AudioSource audioSource;
@@ -22,6 +21,7 @@ public class AnimationManeger : MonoBehaviour
     public string animationFileName;//アニメーションなどの命令テキストファイル 
     private string[] charaOrder;
     private int charaOrderNum;
+
 
     // Use this for initialization
     void Awake()
@@ -39,7 +39,6 @@ public class AnimationManeger : MonoBehaviour
         actionCount = 0;
         audioClipCount = 0;
         cgsCount = 0;
-        fadeVal = 0;
         stillView.gameObject.SetActive(false);
     }
 
@@ -64,19 +63,26 @@ public class AnimationManeger : MonoBehaviour
                 {//音声再生
                     audioSource.clip = audioClip[arrayNum[actionCount]];
                     audioSource.Play();
-                    //audioClipCount++;
                 }
                 else if (eventName[actionCount] == "Cgview")
                 {//CG表示
                     stillView.sprite = stillPictures[arrayNum[actionCount]];
                     PlayerPrefs.SetString(stillPictures[arrayNum[actionCount]].name, stillPictures[arrayNum[actionCount]].name);
                     StartCoroutine("FadeIn");
-                    //cgsCount++;
                 }
                 else if (eventName[actionCount] == "Cgdel")
                 {//CG非表示
                     StartCoroutine("FadeOut");
                 }
+                else if (eventName[actionCount] == "TextDel")
+                {//Textbox非表示
+                    textBoxController.StartCoroutine("TextBoxFade", "del");
+                }
+                else if (eventName[actionCount] == "TextView")
+                {//Textbox表示
+                    textBoxController.StartCoroutine("TextBoxFade", "view");
+                }
+
 
                 else if (eventName[actionCount] == "SwichPos")
                 {
@@ -104,33 +110,6 @@ public class AnimationManeger : MonoBehaviour
             }
         }
     }
-    /*
-        public void SkipAnimation(int textLineNum)
-        {
-            foreach (int num in eventLine)
-            {
-                if (num == textLineNum)
-                {
-                    if (eventName[actionCount] != "Sound" || eventName[actionCount] != "Cgview" || eventName[actionCount] != "Cgdel")
-                    {
-                        animator[arrayNum[actionCount]].Play(animator[arrayNum[actionCount]].GetCurrentAnimatorStateInfo(0).fullPathHash, 0, 1);//これやばそう
-                    }
-                }
-            }
-        }
-
-        public void ResetAnimationSpeed()
-        {
-            foreach (Animator item in animator)
-            {
-                if (item == null)
-                {
-                    return;
-                }
-                item.speed = 1;
-            }
-        }
-    */
     private void GetAnimationOrder()
     {
         var orderText = Resources.Load<TextAsset>("Scenario/" + animationFileName);//ordertextには命令 行数 (arrayNum)で記述
@@ -160,7 +139,8 @@ public class AnimationManeger : MonoBehaviour
 
     private IEnumerator FadeIn()
     {
-        fadeVal = 0;
+        float fadeVal = 0;
+        float fadeTime = 1.6f;
         stillView.gameObject.SetActive(true);
         textBoxController.ViewCGs();
         textBoxController.SwitchTextBox();
@@ -181,7 +161,8 @@ public class AnimationManeger : MonoBehaviour
 
     private IEnumerator FadeOut()
     {
-        fadeVal = 0;
+        float fadeVal = 0;
+        float fadeTime = 1.6f;
         textBoxController.ViewCGs();
         textBoxController.SwitchTextBox();
         while (true)

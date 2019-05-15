@@ -16,17 +16,19 @@ public class TextController : MonoBehaviour
     [SerializeField] private TextBoxController textBoxController;
     //[SerializeField] private Text textLog;
     [SerializeField] private TextLogManeger textLogManeger;
+    public static bool TextControl { get; set; }
     // Use this for initialization
     void Start()
     {
         //textLog.text = null;
+        TextControl = true;
         SetNextText();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!textBoxController.TextBox.activeSelf)
+        if (!textBoxController.TextBox.activeSelf || !TextControl)
         {
             textUpdateTime += Time.deltaTime; //TextBox非表示の時にテキストの更新時間を遅延させる
         }
@@ -34,7 +36,7 @@ public class TextController : MonoBehaviour
         {
             textBoxController.SwitchTextBox();
         }
-        if (textBoxController.TextBox.activeSelf)
+        if (textBoxController.TextBox.activeSelf && TextControl)
         {
             if (currentText.Length > textCount)
             {
@@ -67,6 +69,8 @@ public class TextController : MonoBehaviour
 
     void SetNextText()
     {
+        animationManeger.ExecuteAnimation(scenarioIndex);//animation呼び出し
+        uiText.text = "";//uiText初期化
         if (scenarioIndex >= scenarioManeger.GetTextLine())
         {
             Debug.Log("end");
@@ -84,8 +88,6 @@ public class TextController : MonoBehaviour
             {
                 nameText.text = null;
             }
-
-            animationManeger.ExecuteAnimation(scenarioIndex);//animation呼び出し
             scenarioIndex++;
         }
 
@@ -97,24 +99,6 @@ public class TextController : MonoBehaviour
         {
             textLogManeger.CreateLogObj(currentText);
         }
-        //log機能過去版
-        /*if (textLog.text == null)
-        {
-            if (nameText.text != null)
-            {
-                textLog.text += nameText.text + "\n";
-            }
-            textLog.text += currentText;
-        }
-        else
-        {
-            if (nameText.text != null)
-            {
-                textLog.text += nameText.text + "\n";
-            }
-            textLog.text += currentText;
-        }
-        textLog.text += "\n\n";*/
         textCount = 0;
         textUpdateTime = Time.time;
         textUpdateInterval = 0.1f;
@@ -122,7 +106,7 @@ public class TextController : MonoBehaviour
 
     public void OnClick()
     {
-        if (textBoxController.TextBox.activeSelf)
+        if (textBoxController.TextBox.activeSelf && TextControl)
         {
             if (currentText.Length <= textCount)
             {
