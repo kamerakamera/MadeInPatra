@@ -32,7 +32,7 @@ public class TextController : MonoBehaviour
         {
             textUpdateTime += Time.deltaTime; //TextBox非表示の時にテキストの更新時間を遅延させる
         }
-        if (Input.GetMouseButtonDown(1) && !textBoxController.View)
+        if (Input.GetMouseButtonDown(1) && !textBoxController.View && TextControl)
         {
             textBoxController.SwitchTextBox();
         }
@@ -81,8 +81,8 @@ public class TextController : MonoBehaviour
             currentText = scenarioManeger.GetCurrentText(scenarioIndex);//現在の行のテキスト代入
             if (currentText[0] == '*')
             {
-                nameText.text = currentText.Split(new string[] { "*" }, System.StringSplitOptions.None)[1];//テキストデータのuの文字の前にcharactorの名前を記載しているのでその取得
-                currentText = currentText.Substring(nameText.text.Length + 2);//charactorNameと判別のためのｃを削除
+                nameText.text = "[ " + currentText.Split(new string[] { "*" }, System.StringSplitOptions.None)[1] + " ]";//テキストデータのuの文字の前にcharactorの名前を記載しているのでその取得
+                currentText = currentText.Substring(nameText.text.Length - 2);//charactorNameと判別のための*を削除
             }
             else
             {

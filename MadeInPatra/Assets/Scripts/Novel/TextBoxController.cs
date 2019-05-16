@@ -16,11 +16,13 @@ public class TextBoxController : MonoBehaviour
     private Image textboxWindow;
     Image[] textBoxImage;
     Text[] textBoxText;
+    bool fadeDir;
 
     // Start is called before the first frame update
     void Start()
     {
         View = false;
+        fadeDir = true;
         textBoxImage = textBox.GetComponentsInChildren<Image>();
         textBoxText = textBox.GetComponentsInChildren<Text>();
         foreach (var item in textBoxImage)
@@ -56,11 +58,10 @@ public class TextBoxController : MonoBehaviour
         else View = true;
     }
 
-    public IEnumerator TextBoxFade(string order)
+    public IEnumerator TextBoxFade(int time)
     {
         float fadeVal = 0;
-        float fadeTime = 1.6f;
-        bool fadeDir = (order == "view") ? true : false;
+        float fadeTime = time;
         TextController.TextControl = false;
         while (true)
         {
@@ -96,6 +97,7 @@ public class TextBoxController : MonoBehaviour
             yield return null;
         }
         TextController.TextControl = true;
+        fadeDir = (fadeDir) ? false : true;
         yield break;
     }
 }
