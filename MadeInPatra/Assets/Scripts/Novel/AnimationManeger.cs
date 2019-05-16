@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using UnityEngine.SceneManagement;
 
 public class AnimationManeger : MonoBehaviour
 {
@@ -21,6 +21,13 @@ public class AnimationManeger : MonoBehaviour
     public string animationFileName;//アニメーションなどの命令テキストファイル 
     private string[] charaOrder;
     private int charaOrderNum;
+    private int[] layerNumList = new int[]{
+        2,4,6
+    };
+    [SerializeField]
+    BackImageManeger backImageManeger;
+    [SerializeField]
+    string nextSceneName;
 
 
     // Use this for initialization
@@ -74,15 +81,33 @@ public class AnimationManeger : MonoBehaviour
                 {//CG非表示
                     StartCoroutine("FadeOut");
                 }
-                else if (eventName[actionCount] == "TextDel")
-                {//Textbox非表示
-                    textBoxController.StartCoroutine("TextBoxFade", "del");
+                else if (eventName[actionCount] == "TextBoxFade")
+                {//Textbox表示切り替え
+                    textBoxController.StartCoroutine("TextBoxFade", arrayNum[actionCount]);
                 }
-                else if (eventName[actionCount] == "TextView")
-                {//Textbox表示
-                    textBoxController.StartCoroutine("TextBoxFade", "view");
+                else if (eventName[actionCount] == "SetBackImage")
+                {//背景変更
+                    backImageManeger.SetBackGroundImage(arrayNum[actionCount]);
+                }
+                else if (eventName[actionCount] == "SetFadeColor")
+                {//背景のFadeColorを変更:0は黒,１は白
+                    backImageManeger.SetFadeColor(arrayNum[actionCount]);
+                }
+                else if (eventName[actionCount] == "FadeView")
+                {//背景Fadeしながら表示
+                    backImageManeger.FadeView(arrayNum[actionCount]);
+                }
+                else if (eventName[actionCount] == "FadeOut")
+                {//背景Fadeしながら非表示
+                    backImageManeger.FadeOut(arrayNum[actionCount]);
                 }
 
+                else if (eventName[actionCount] == "FrontChara")
+                {
+                    //選択したCharaは最前列へ
+                    //charactor[arrayNum[actionCount]].GetComponent<Charactor>().SetLayerNum(layerNumList[2]);
+                    SortCharactorLayer();
+                }
 
                 else if (eventName[actionCount] == "SwichPos")
                 {
@@ -92,7 +117,14 @@ public class AnimationManeger : MonoBehaviour
                 else if (eventName[actionCount] == "ChangeSprite")
                 {
                     charactor[arrayNum[actionCount]].GetComponent<Charactor>().StartCoroutine("ChangeSpriteCor", charaOrder[charaOrderNum]);
+                    SortCharactorLayer();
                     charaOrderNum++;
+                }
+                else if (eventName[actionCount] == "End")
+                {
+                    textBoxController.StartCoroutine("TextBoxFade", arrayNum[actionCount]);
+                    backImageManeger.FadeOut(arrayNum[actionCount]);
+                    Invoke("LoadScene", arrayNum[actionCount]);
                 }
                 else
                 {//Charactorアニメーション再生
@@ -104,6 +136,7 @@ public class AnimationManeger : MonoBehaviour
                     else
                     {
                         charactor[arrayNum[actionCount]].GetComponent<Charactor>().Invoke(eventName[actionCount], 0);
+                        SortCharactorLayer();
                     }
                 }
                 actionCount++;//次のアクションへ
@@ -179,5 +212,22 @@ public class AnimationManeger : MonoBehaviour
         textBoxController.SwitchTextBox();
         stillView.gameObject.SetActive(false);
         yield break;
+    }
+
+    private void SortCharactorLayer()
+    {
+        foreach (var item in charactor)
+        {
+            if (item.GetComponent<Charactor>().GetViewBool())
+            {
+                item.GetComponent<Charactor>().SetLayerNum(layerNumList[0]);
+            }
+        }
+        charactor[arrayNum[actionCount]].GetComponent<Charactor>().SetLayerNum(layerNumList[2]);
+    }
+
+    public void LoadScene()
+    {
+        SceneManager.LoadScene(nextSceneName);
     }
 }

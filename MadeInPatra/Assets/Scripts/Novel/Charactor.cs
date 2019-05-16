@@ -42,7 +42,22 @@ public class Charactor : MonoBehaviour
 
     }
 
-    public void SetUpSprite()
+    public void SetLayerNum(int num)
+    {
+        nowSprite.sortingOrder = num;
+        beforeSprite.sortingOrder = num;
+    }
+
+    public bool GetViewBool()
+    {
+        if (nowSprite.color.a == 0)
+        {
+            return false;
+        }
+        return true;
+    }
+
+    public void SetSprite()
     {
         animator.Play("Wait");
         SkipAnim();
@@ -57,7 +72,7 @@ public class Charactor : MonoBehaviour
     public void SetAnimSprite(Sprite[] sprites)
     {
         spriteList = sprites;
-        SetUpSprite();
+        SetSprite();
     }
 
     public void SwichPos(string posName)
@@ -69,7 +84,7 @@ public class Charactor : MonoBehaviour
     {
         if (IsAnim)
         {
-            if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Wait"))
+            if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Wait") && !animator.GetCurrentAnimatorStateInfo(0).IsName("Exit"))
             {
                 animator.Play("Idle");
             }
@@ -121,12 +136,18 @@ public class Charactor : MonoBehaviour
         SkipAnim(); yield break;
     }
 
-    public void Enter()//出現Animation
+    public void MoveEnter()//出現Animation
     {
         IsAnim = true;
         animator.Play("Enter");
         Debug.Log(myPos);
         StartCoroutine(EnterCor());
+    }
+
+    public void Enter()
+    {
+        IsAnim = true;
+        animator.Play("Enter");
     }
 
     public IEnumerator EnterCor()
@@ -146,6 +167,12 @@ public class Charactor : MonoBehaviour
             yield return null;
         }
         yield break;
+    }
+
+    public void Exit()
+    {
+        IsAnim = true;
+        animator.Play("Exit");
     }
 
     public void Hop()//ジャンプAnimation
