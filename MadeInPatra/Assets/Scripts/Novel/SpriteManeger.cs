@@ -6,8 +6,6 @@ public class SpriteManeger : MonoBehaviour
 {
     [SerializeField]
     Charactor[] charactors;
-    [SerializeField]
-    AnimationManeger animationManeger;
     Sprite[] sprites = new Sprite[StringProperty.expressionName.Length];
     // Start is called before the first frame update
     private void Awake()

@@ -39,13 +39,13 @@ public class AnimationManeger : MonoBehaviour
         {
             animator[i] = charactor[i].GetComponent<Animator>();
         }
+        actionCount = 0;
+        audioClipCount = 0;
+        cgsCount = 0;
     }
 
     void Start()
     {
-        actionCount = 0;
-        audioClipCount = 0;
-        cgsCount = 0;
         stillView.gameObject.SetActive(false);
     }
 
@@ -66,6 +66,7 @@ public class AnimationManeger : MonoBehaviour
         {
             if (num == textLineNum)
             {
+                Debug.Log(eventName[actionCount]);
                 if (eventName[actionCount] == "Sound")
                 {//音声再生
                     audioSource.clip = audioClip[arrayNum[actionCount]];
@@ -101,14 +102,12 @@ public class AnimationManeger : MonoBehaviour
                 {//背景Fadeしながら非表示
                     backImageManeger.FadeOut(arrayNum[actionCount]);
                 }
-
                 else if (eventName[actionCount] == "FrontChara")
                 {
                     //選択したCharaは最前列へ
                     //charactor[arrayNum[actionCount]].GetComponent<Charactor>().SetLayerNum(layerNumList[2]);
                     SortCharactorLayer();
                 }
-
                 else if (eventName[actionCount] == "SwichPos")
                 {
                     charactor[arrayNum[actionCount]].GetComponent<Charactor>().SwichPos(charaOrder[charaOrderNum]);
@@ -140,6 +139,7 @@ public class AnimationManeger : MonoBehaviour
                     }
                 }
                 actionCount++;//次のアクションへ
+                Debug.Log(actionCount);
             }
         }
     }
