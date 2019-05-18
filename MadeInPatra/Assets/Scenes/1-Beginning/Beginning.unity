@@ -289,7 +289,7 @@ PrefabInstance:
     - target: {fileID: 96651158774590649, guid: 2e9661da38e19ba4b9092ca5297c87d0,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.00011792856
+      value: -0.000012152141
       objectReference: {fileID: 0}
     - target: {fileID: 96651159832010380, guid: 2e9661da38e19ba4b9092ca5297c87d0,
         type: 3}
@@ -311,5 +311,17 @@ PrefabInstance:
       propertyPath: charactors.Array.data[0]
       value: 
       objectReference: {fileID: 1620128900}
+    - target: {fileID: 96651159883459809, guid: 2e9661da38e19ba4b9092ca5297c87d0,
+        type: 3}
+      propertyPath: backGroundImageList.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: e1cb1f1dd7f711548b323aa69924cdff,
+        type: 3}
+    - target: {fileID: 96651159883459809, guid: 2e9661da38e19ba4b9092ca5297c87d0,
+        type: 3}
+      propertyPath: backGroundImageList.Array.data[1]
+      value: 
+      objectReference: {fileID: 21300000, guid: f0b478895dcee8a45b037e91515880db,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2e9661da38e19ba4b9092ca5297c87d0, type: 3}
