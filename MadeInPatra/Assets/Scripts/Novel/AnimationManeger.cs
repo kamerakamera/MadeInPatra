@@ -19,8 +19,8 @@ public class AnimationManeger : MonoBehaviour
     [SerializeField] private TextBoxController textBoxController;
     private string[] splits = new string[5];//splitしたときの代入用配列
     public string animationFileName;//アニメーションなどの命令テキストファイル 
-    private string[] charaOrder;
-    private int charaOrderNum;
+    private string[] nextOrder;
+    private int nextOrderNum;
     private int[] layerNumList = new int[]{
         2,4,6
     };
@@ -33,7 +33,7 @@ public class AnimationManeger : MonoBehaviour
     // Use this for initialization
     void Awake()
     {
-        charaOrderNum = 0;
+        nextOrderNum = 0;
         GetAnimationOrder();
         for (int i = 0; i < charactor.Length; i++)
         {
@@ -62,12 +62,24 @@ public class AnimationManeger : MonoBehaviour
             //if (i == arrayNum[actionCount]) { continue; }
             charactor[i].GetComponent<Charactor>().SkipAnim();
         }
-        foreach (int num in eventLine)
+        for (int i = actionCount; i < eventLine.Length; i++)
         {
-            if (num == textLineNum)
+            if (eventLine[i] == textLineNum)
             {
-                Debug.Log(eventName[actionCount]);
-                if (eventName[actionCount] == "Sound")
+                if (eventName[actionCount] == "")
+                {
+                    actionCount++;
+                    continue;
+                }
+                else if (eventName[actionCount] == "InvokeAnim")
+                {//時間指定でAnimation命令
+
+                    StartCoroutine(InvokeExecuteAnimation(arrayNum[actionCount], textLineNum));
+                    TextController.TextControl = false;
+                    eventName[actionCount] = "";
+                    break;
+                }
+                else if (eventName[actionCount] == "Sound")
                 {//音声再生
                     audioSource.clip = audioClip[arrayNum[actionCount]];
                     audioSource.Play();
@@ -110,14 +122,14 @@ public class AnimationManeger : MonoBehaviour
                 }
                 else if (eventName[actionCount] == "SwichPos")
                 {
-                    charactor[arrayNum[actionCount]].GetComponent<Charactor>().SwichPos(charaOrder[charaOrderNum]);
-                    charaOrderNum++;
+                    charactor[arrayNum[actionCount]].GetComponent<Charactor>().SwichPos(nextOrder[nextOrderNum]);
+                    nextOrderNum++;
                 }
                 else if (eventName[actionCount] == "ChangeSprite")
                 {
-                    charactor[arrayNum[actionCount]].GetComponent<Charactor>().StartCoroutine("ChangeSpriteCor", charaOrder[charaOrderNum]);
+                    charactor[arrayNum[actionCount]].GetComponent<Charactor>().StartCoroutine("ChangeSpriteCor", nextOrder[nextOrderNum]);
                     SortCharactorLayer();
-                    charaOrderNum++;
+                    nextOrderNum++;
                 }
                 else if (eventName[actionCount] == "End")
                 {
@@ -129,8 +141,8 @@ public class AnimationManeger : MonoBehaviour
                 {//Charactorアニメーション再生
                     if (eventName[actionCount] == "ChangePos")//Charactorの位置チェンジ
                     {
-                        charactor[arrayNum[actionCount]].GetComponent<Charactor>().StartCoroutine("ChangePosCor", charaOrder[charaOrderNum]);
-                        charaOrderNum++;
+                        charactor[arrayNum[actionCount]].GetComponent<Charactor>().StartCoroutine("ChangePosCor", nextOrder[nextOrderNum]);
+                        nextOrderNum++;
                     }
                     else
                     {
@@ -143,6 +155,14 @@ public class AnimationManeger : MonoBehaviour
             }
         }
     }
+
+    public IEnumerator InvokeExecuteAnimation(float waitTime, int textLineNum)
+    {
+        yield return new WaitForSeconds(waitTime);
+        TextController.TextControl = true;
+        ExecuteAnimation(textLineNum);
+        yield break;
+    }
     private void GetAnimationOrder()
     {
         var orderText = Resources.Load<TextAsset>("Scenario/" + animationFileName);//ordertextには命令 行数 (arrayNum)で記述
@@ -154,20 +174,20 @@ public class AnimationManeger : MonoBehaviour
         eventName = orderText.text.Split(new string[] { "\r\n" }, System.StringSplitOptions.None);//それぞれの命令は改行で区切る
         eventLine = new int[eventName.Length];//eventの数だけ要素数確保
         arrayNum = new int[eventName.Length];//上と同じ
-        charaOrder = new string[eventName.Length];
+        nextOrder = new string[eventName.Length];
         for (int i = 0; i < eventName.Length; i++)
         {
             splits = eventName[i].Split(new string[] { " " }, System.StringSplitOptions.None);//Split用配列に代入
             eventName[i] = splits[0];//event名代入
             eventLine[i] = int.Parse(splits[1]);//event行数
             arrayNum[i] = int.Parse(splits[2]);//charactor,画像,音声などを要素数で指定
-            if (eventName[i] == "ChangePos" || eventName[i] == "ChangeSprite" || eventName[i] == "SwichPos") { charaOrder[charaOrderNum] = splits[3]; charaOrderNum++; }
+            if (eventName[i] == "ChangePos" || eventName[i] == "ChangeSprite" || eventName[i] == "SwichPos") { nextOrder[nextOrderNum] = splits[3]; nextOrderNum++; }
             for (int j = 0; j < splits.Length; j++)
             {
                 splits[j] = string.Empty;
             }
         }
-        charaOrderNum = 0;
+        nextOrderNum = 0;
     }
 
     private IEnumerator FadeIn()
