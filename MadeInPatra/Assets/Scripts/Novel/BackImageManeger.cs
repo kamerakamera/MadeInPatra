@@ -63,6 +63,7 @@ public class BackImageManeger : MonoBehaviour
             whiteImage.color = new Color(whiteImage.color.r, whiteImage.color.g, whiteImage.color.b, count / time);
             yield return null;
         }
+        Debug.Log("end");
         yield break;
     }
 }

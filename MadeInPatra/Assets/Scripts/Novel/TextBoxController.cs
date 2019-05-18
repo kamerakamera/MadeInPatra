@@ -96,7 +96,10 @@ public class TextBoxController : MonoBehaviour
             }
             yield return null;
         }
-        TextController.TextControl = true;
+        if (fadeDir)
+        {
+            TextController.TextControl = true;
+        }
         fadeDir = (fadeDir) ? false : true;
         yield break;
     }

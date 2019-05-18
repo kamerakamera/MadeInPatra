@@ -28,6 +28,7 @@ public class TextController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKey(KeyCode.Space)) OnClick();
         if (!textBoxController.TextBox.activeSelf || !TextControl)
         {
             textUpdateTime += Time.deltaTime; //TextBox非表示の時にテキストの更新時間を遅延させる
