@@ -2,13 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class TitleSceneManeger : MonoBehaviour
 {
     [SerializeField]
     private GameObject startPanel, continuePanel, stillsViewPanel, messegeViewPanel;
     [SerializeField]
-    private Animator stillViewsAnimator, startManuAnimator;
+    private Animator stillViewsAnimator, startManuAnimator, continuePanelAnimator;
+    [SerializeField]
+    private Image fadeImage;
+    [SerializeField]
+    private Animation sceneLoadAnimation;
     // Start is called before the first frame update
 
     private void Awake()
@@ -39,11 +44,24 @@ public class TitleSceneManeger : MonoBehaviour
     public void OnStartButtonClick()
     {
         DelAnim();
+        StartCoroutine(LoadScene("Beginning"));
     }
 
     public void OnContinueButtonClick()
     {
         DelAnim();
+        Invoke("ContinueView", 1.0f);
+    }
+
+    private void ContinueView()
+    {
+        continuePanel.SetActive(true);
+        continuePanelAnimator.Play("PanelView");
+    }
+
+    public void OnContinueSceneClick(string sceneName)
+    {
+        StartCoroutine(LoadScene(sceneName));
     }
 
     public void OnCGsViewButtonClick()
@@ -87,6 +105,14 @@ public class TitleSceneManeger : MonoBehaviour
         {
             item.enabled = false;
         }
+    }
+
+    private IEnumerator LoadScene(string sceneName)
+    {
+        sceneLoadAnimation.Play();
+        yield return new WaitForSeconds(1.0f);
+        SceneManager.LoadScene(sceneName);
+        yield break;
     }
 
     public void OnEndButtonClick()
