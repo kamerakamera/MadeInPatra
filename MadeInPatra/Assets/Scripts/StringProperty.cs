@@ -17,7 +17,9 @@ public class StringProperty
         "beforeBattle"/*戦闘前*/,
         "damned"/*呆れ顔*/,
         "grin"/*にやけ顔*/,
-        "ashamed"/*恥じらい*/
+        "ashamed"/*恥じらい*/,
+        "limited"/*限界*/,
+        "sleep"/*眠る*/
     };
     public static string[] stillNames = new string[]{//Stillの名前を事前に格納
         "0",
