@@ -6,7 +6,7 @@ public class ScenarioManeger : MonoBehaviour
 {
     public string loadFileName;
     private string[] scenarios;
-    private int currentTextLine, textLine, currentIndex = 0;
+    private int currentTextLine, textLine, currentIndex = 0, textLength = 30;
 
     // Use this for initialization
     void Awake()
@@ -33,6 +33,16 @@ public class ScenarioManeger : MonoBehaviour
             return;
         }
         scenarios = scenarioText.text.Split(new string[] { ">" }, System.StringSplitOptions.None);
+        for (int i = 0; i < scenarios.Length; i++)
+        {
+            if (scenarios[i].Length / textLength >= 1)
+            {
+                for (int j = scenarios[i].Length / textLength; j > 0; j--)
+                {
+                    scenarios[i] = scenarios[i].Insert(j * textLength, "\r\n");
+                }
+            }
+        }
         Resources.UnloadAsset(scenarioText);
         textLine = scenarios.Length;
         currentIndex = 0;
