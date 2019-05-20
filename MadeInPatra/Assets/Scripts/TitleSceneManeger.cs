@@ -7,13 +7,13 @@ using UnityEngine.SceneManagement;
 public class TitleSceneManeger : MonoBehaviour
 {
     [SerializeField]
-    private GameObject startPanel, continuePanel, stillsViewPanel, messegeViewPanel;
+    private GameObject startPanel, continuePanel, stillsViewPanel, messegeViewPanel, stillView;
     [SerializeField]
     private Animator stillViewsAnimator, startManuAnimator, continuePanelAnimator;
     [SerializeField]
     private Image fadeImage;
     [SerializeField]
-    private Animation sceneLoadAnimation;
+    private Animation fadeScreen;
     // Start is called before the first frame update
 
     private void Awake()
@@ -27,6 +27,7 @@ public class TitleSceneManeger : MonoBehaviour
         messegeViewPanel.SetActive(false);
         startPanel.SetActive(true);
         startManuAnimator.Play("StartAnimation");
+        stillView.GetComponent<Image>().enabled = false;
     }
 
     // Update is called once per frame
@@ -76,6 +77,20 @@ public class TitleSceneManeger : MonoBehaviour
         stillViewsAnimator.Play("MoveStill");
     }
 
+    public void SelectStill(Image stillImage)
+    {
+        if (stillImage.IsActive())
+        {
+            stillView.GetComponent<Image>().sprite = stillImage.sprite;
+            stillView.GetComponent<Image>().enabled = true;
+        }
+    }
+
+    public void BackStillView()
+    {
+        stillView.GetComponent<Image>().enabled = false;
+    }
+
     public void OnMessagesButtonClick()
     {
         DelAnim();
@@ -109,7 +124,7 @@ public class TitleSceneManeger : MonoBehaviour
 
     private IEnumerator LoadScene(string sceneName)
     {
-        sceneLoadAnimation.Play();
+        fadeScreen.Play();
         yield return new WaitForSeconds(1.0f);
         SceneManager.LoadScene(sceneName);
         yield break;

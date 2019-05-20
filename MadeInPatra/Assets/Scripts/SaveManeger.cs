@@ -14,7 +14,7 @@ public class SaveManeger : MonoBehaviour
     {
         PlayerPrefs.DeleteAll();
         //PlayerPrefs.SetString(StringProperty.stillNames[5], StringProperty.stillNames[5]);
-        //PlayerPrefs.Save();
+        PlayerPrefs.DeleteAll();
     }
     // Start is called before the first frame update
     void Start()
