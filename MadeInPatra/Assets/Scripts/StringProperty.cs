@@ -39,6 +39,15 @@ public class StringProperty
     public static string[] loadSceneName = new string[]{
         "Beginning",
         "Tutorial-before",
+        "Eli-before",
+        "Charlotte-before",
+        "Mico-before",
+        "Mary-before",
+        "Nanashi-before",
+        "Final"
+    };
+    /*"Beginning",
+        "Tutorial-before",
         "Tutorial-battle",
         "Tutorial-after",
         "Eli-before",
@@ -57,6 +66,5 @@ public class StringProperty
         "Nanashi-before",
         "Nanashi-battle",
         "Final",
-        "Endroll"
-    };
+        "Endroll" */
 }
