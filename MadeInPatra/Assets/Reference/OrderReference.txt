@@ -1,0 +1,87 @@
+"InvokeAnim"　"行数" "時間"
+時間指定後に同じ行数に指定した次からの命令を実行
+
+"Sound"　"行数" "配列添え字"
+指定した配列の音声を実行
+
+"Cgview" "行数" "配列添え字"
+指定した配列のCGを表示Animationを開始、GameObjectの名前のPlayerPrefを追加
+
+"Cgdel" "行数" "表示しているCGの配列添え字"
+指定した配列のCGを非表示Animationを開始
+
+"TextBoxFade" "行数" "表示切替時間"
+TextBoxを表示非表示切り替えAnimationを再生
+
+"SetBackImage" "行数" "配列添え字"
+指定した背景に変更
+
+"SetFadeColor" "行数" "0 or 1"
+画面のFadeColorを変更、0ならば黒、1ならば白
+
+"FadeView" "行数" "秒数"
+Fadeしながら画面表示、"SetFadeColor"によって決めた色でFadeする
+
+"FadeOut" "行数" "秒数"
+Fadeしながら画面非表示、"SetFadeColor"によって決めた色でFadeする
+
+"ChangeSprite" "行数" "キャラクターの配列添え字" "expressionName"
+指定したCharactorの画像を指定した表情差分に変更、種類は以下の通り
+"normal"/*通常*/,"smile"/*笑顔*/,"closeEyes"/*目をつむる*/,  "sumg"/*どや顔*/,
+"impatience"/*焦り*/,"surprise"/*驚き*/,"troubled"/*困り顔*/,"sadness"/*悲しみ*/,
+"anger"/*怒り*/,"doubt"/*疑問*/,"beforeBattle"/*戦闘前*/,"damned"/*呆れ顔*/,
+"grin"/*にやけ顔*/,"ashamed"/*恥じらい*/,"limited"/*限界*/,"sleep"/*眠る*/
+※Charactorが所持していない差分もあります！
+
+"End" "行数" "時間"
+指定した秒数TextBoxと画面のFadeを行い、終了後に次のSceneへ飛ばす
+
+"ChangePos" "行数" "移動する場所の名前"
+"CharactorPos"の文字列によって位置を移動するAnimationを再生する
+文字列の命令は以下の通り
+{"center",new Vector3(400f, 150f, 1000f)},//画面中心
+{"sideLeft",new Vector3(-500f, 150f, 1000f)},//画面右側、Charactorから見て左側
+{"sideRight",new Vector3(1300f, 150f, 1000f)},//画面左側、Charactorから見て右側
+{"right",new Vector3(-50f, 150f, 1000f)},//画面左側、Charactorから見て右側、2人用
+{"left",new Vector3(850f, 150f, 1000f)},//画面右側、Charactorから見て左側、2人用
+
+"SwichPos" "行数" "キャラクターの配列添え字" "場所の指定"
+EnterなどのAnimationの場所指定、最初の出現場所の指定などに使う
+
+"Enter" "行数" "キャラクターの配列添え字"
+画面にCharactorが現れる、現れる場所はSwichPosで指定可能
+
+"MoveEnter" "行数" "キャラクターの配列添え字"
+画面にCharactorが動きながら現れる、現れる場所はSwichPosで指定可能
+
+"Hop" "行数" "キャラクターの配列添え字"
+選択したキャラクターが飛び跳ねる
+
+"Del" "行数" "キャラクターの配列添え字"
+Charactorが画面から消える
+
+例文
+SwichPos 0 0 center
+FadeView 0 3
+TextBoxFade 0 3
+SetBackImage 0 1
+SetFadeColor 0 0
+Enter 1 0
+ChangePos 1 1 center
+Enter 2 1
+Enter 3 2
+Hop 4 0
+Cgview 5 0
+Cgdel 7 0
+Sound 8 0
+Cgview 9 1
+Cgdel 11 1
+Hop 13 1
+Hop 15 2
+FadeOut 10 2
+TextBoxFade 10 2
+InvokeAnim 10 6
+TextBoxFade 10 2
+FadeView 10 2
+SetFadeColor 110 1
+End 110 5
