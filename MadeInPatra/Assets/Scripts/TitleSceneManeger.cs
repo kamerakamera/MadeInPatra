@@ -11,8 +11,6 @@ public class TitleSceneManeger : MonoBehaviour
     [SerializeField]
     private Animator stillViewsAnimator, startManuAnimator, continuePanelAnimator;
     [SerializeField]
-    private Image fadeImage;
-    [SerializeField]
     private Animation fadeScreen;
     // Start is called before the first frame update
 
@@ -132,6 +130,12 @@ public class TitleSceneManeger : MonoBehaviour
 
     public void OnEndButtonClick()
     {
+        fadeScreen.Play();
+        Invoke("GameOver", 1.0f);
+    }
 
+    private void GameOver()
+    {
+        Application.Quit();
     }
 }

@@ -13,6 +13,14 @@ public class SaveManeger : MonoBehaviour
     private void Awake()
     {
         PlayerPrefs.DeleteAll();
+        foreach (var item in StringProperty.loadSceneName)
+        {
+            PlayerPrefs.SetString(item, item);
+        }
+        foreach (var item in StringProperty.stillNames)
+        {
+            PlayerPrefs.SetString(item, item);
+        }
         //PlayerPrefs.SetString(StringProperty.loadSceneName[5], StringProperty.loadSceneName[5]);
         //PlayerPrefs.SetString(StringProperty.stillNames[5], StringProperty.stillNames[5]);
     }

@@ -6,7 +6,7 @@ public class StringProperty
     public static string[] expressionName = new string[]{
         "normal"/*通常*/,
         "smile"/*笑顔*/,
-        "closeEyes"/*目をつむる*/,
+        "closeEyes"/*目をつむる*/,  
         "sumg"/*どや顔*/,
         "impatience"/*焦り*/,
         "surprise"/*驚き*/,
