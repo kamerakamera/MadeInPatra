@@ -509,6 +509,7 @@ GameObject:
   - component: {fileID: 96651158799015334}
   - component: {fileID: 96651158799015332}
   - component: {fileID: 96651158799015333}
+  - component: {fileID: 6086842387798790334}
   m_Layer: 5
   m_Name: CGsView
   m_TagString: Untagged
@@ -556,7 +557,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -572,6 +573,25 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+--- !u!95 &6086842387798790334
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 96651158799015335}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &96651158849989900
 GameObject:
   m_ObjectHideFlags: 0
@@ -1990,6 +2010,7 @@ MonoBehaviour:
   animationFileName: OpeningTextOrder
   backImageManeger: {fileID: 96651159883459809}
   nextSceneName: StartScene
+  stillAnimationList: []
 --- !u!82 &96651160305306986
 AudioSource:
   m_ObjectHideFlags: 0

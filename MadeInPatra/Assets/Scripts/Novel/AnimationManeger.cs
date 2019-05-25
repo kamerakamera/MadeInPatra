@@ -94,6 +94,10 @@ public class AnimationManeger : MonoBehaviour
                 {//CG非表示
                     StartCoroutine("FadeOut");
                 }
+                else if (eventName[actionCount] == "Cgmove")
+                {
+                    StartCoroutine(StillAnimFade(arrayNum[actionCount].ToString()));
+                }
                 else if (eventName[actionCount] == "TextBoxFade")
                 {//Textbox表示切り替え
                     textBoxController.StartCoroutine("TextBoxFade", arrayNum[actionCount]);
@@ -230,8 +234,40 @@ public class AnimationManeger : MonoBehaviour
         }
         textBoxController.ViewCGs();
         textBoxController.SwitchTextBox();
+        stillView.gameObject.GetComponent<Animator>().Play("0");
         stillView.gameObject.SetActive(false);
         yield break;
+    }
+
+    private IEnumerator StillAnimFade(string animName)
+    {
+        float fadeVal = 0;
+        float fadeTime = 1.0f;
+        bool del = true, view = true;
+        while (del)
+        {
+            fadeVal += Time.deltaTime;
+            stillView.color = new Color(1 - fadeVal / fadeTime, 1 - fadeVal / fadeTime, 1 - fadeVal / fadeTime, 1);
+            if (fadeVal >= fadeTime)
+            {
+                del = false;
+                break;
+            }
+            yield return null;
+        }
+        stillView.gameObject.GetComponent<Animator>().Play(animName);
+        fadeVal = 0;
+        while (view)
+        {
+            fadeVal += Time.deltaTime;
+            stillView.color = new Color(fadeVal / fadeTime, fadeVal / fadeTime, fadeVal / fadeTime, 1);
+            if (fadeVal >= fadeTime)
+            {
+                view = false;
+                break;
+            }
+            yield return null;
+        }
     }
 
     private void SortCharactorLayer()
