@@ -20,9 +20,15 @@ TextBoxを表示非表示切り替えAnimationを再生
 画面のFadeColorを変更、0ならば黒、1ならば白
 
 "FadeView" "行数" "秒数"
-Fadeしながら画面表示、"SetFadeColor"によって決めた色でFadeする
+Fadeしながら画面表示（TextBoxも一緒に動きます）、"SetFadeColor"によって決めた色でFadeする
 
 "FadeOut" "行数" "秒数"
+Fadeしながら画面非表示（TextBoxも一緒に動きます）、"SetFadeColor"によって決めた色でFadeする
+
+"BackFadeView" "行数" "秒数"
+Fadeしながら画面表示、"SetFadeColor"によって決めた色でFadeする
+
+"BackFadeOut" "行数" "秒数"
 Fadeしながら画面非表示、"SetFadeColor"によって決めた色でFadeする
 
 "ChangeSprite" "行数" "キャラクターの配列添え字" "expressionName"

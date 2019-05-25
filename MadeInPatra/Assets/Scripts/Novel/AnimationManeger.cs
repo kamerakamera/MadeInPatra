@@ -110,19 +110,23 @@ public class AnimationManeger : MonoBehaviour
                 {//背景のFadeColorを変更:0は黒,１は白
                     backImageManeger.SetFadeColor(arrayNum[actionCount]);
                 }
-                else if (eventName[actionCount] == "FadeView")
+                else if (eventName[actionCount] == "BackFadeView")
                 {//背景Fadeしながら表示
                     backImageManeger.FadeView(arrayNum[actionCount]);
                 }
-                else if (eventName[actionCount] == "FadeOut")
+                else if (eventName[actionCount] == "BackFadeOut")
                 {//背景Fadeしながら非表示
                     backImageManeger.FadeOut(arrayNum[actionCount]);
                 }
-                else if (eventName[actionCount] == "FrontChara")
-                {
-                    //選択したCharaは最前列へ
-                    //charactor[arrayNum[actionCount]].GetComponent<Charactor>().SetLayerNum(layerNumList[2]);
-                    SortCharactorLayer();
+                else if (eventName[actionCount] == "FadeView")
+                {//背景Fadeしながら表示,TextBoxも
+                    backImageManeger.FadeView(arrayNum[actionCount]);
+                    textBoxController.StartCoroutine("TextBoxFade", arrayNum[actionCount]);
+                }
+                else if (eventName[actionCount] == "FadeOut")
+                {//背景Fadeしながら非表示,TextBoxも
+                    backImageManeger.FadeOut(arrayNum[actionCount]);
+                    textBoxController.StartCoroutine("TextBoxFade", arrayNum[actionCount]);
                 }
                 else if (eventName[actionCount] == "SwichPos")
                 {
