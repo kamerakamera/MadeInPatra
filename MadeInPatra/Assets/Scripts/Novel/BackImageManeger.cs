@@ -39,11 +39,11 @@ public class BackImageManeger : MonoBehaviour
 
     private IEnumerator FadeViewCor(int time)
     {
-        float count = 0;
-        while (count <= time)
+        float count = 0, floatTime = time * 0.1f;
+        while (count <= floatTime)
         {
             count += Time.deltaTime;
-            whiteImage.color = new Color(whiteImage.color.r, whiteImage.color.g, whiteImage.color.b, 1 - count / time);
+            whiteImage.color = new Color(whiteImage.color.r, whiteImage.color.g, whiteImage.color.b, 1 - count / floatTime);
             yield return null;
         }
         yield break;
@@ -55,12 +55,12 @@ public class BackImageManeger : MonoBehaviour
     }
     private IEnumerator FadeOutCor(int time)
     {
-        float count = 0;
-        while (count <= time)
+        float count = 0, floatTime = time * 0.1f;
+        while (count <= floatTime)
         {
             Debug.Log(count);
             count += Time.deltaTime;
-            whiteImage.color = new Color(whiteImage.color.r, whiteImage.color.g, whiteImage.color.b, count / time);
+            whiteImage.color = new Color(whiteImage.color.r, whiteImage.color.g, whiteImage.color.b, count / floatTime);
             yield return null;
         }
         Debug.Log("end");

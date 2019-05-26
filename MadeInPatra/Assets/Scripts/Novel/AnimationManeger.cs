@@ -143,7 +143,7 @@ public class AnimationManeger : MonoBehaviour
                 {
                     textBoxController.StartCoroutine("TextBoxFade", arrayNum[actionCount]);
                     backImageManeger.FadeOut(arrayNum[actionCount]);
-                    Invoke("LoadScene", arrayNum[actionCount]);
+                    Invoke("LoadScene", arrayNum[actionCount] * 0.1f);
                 }
                 else
                 {//Charactorアニメーション再生
@@ -166,7 +166,7 @@ public class AnimationManeger : MonoBehaviour
 
     public IEnumerator InvokeExecuteAnimation(float waitTime, int textLineNum)
     {
-        yield return new WaitForSeconds(waitTime);
+        yield return new WaitForSeconds(waitTime * 0.1f);
         TextController.TextControl = true;
         ExecuteAnimation(textLineNum);
         yield break;

@@ -61,7 +61,7 @@ public class TextBoxController : MonoBehaviour
     public IEnumerator TextBoxFade(int time)
     {
         float fadeVal = 0;
-        float fadeTime = time;
+        float fadeTime = time * 0.1f;
         TextController.TextControl = false;
         while (true)
         {
