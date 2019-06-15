@@ -14,7 +14,7 @@ public class AnimationManeger : MonoBehaviour
     private Animator[] animator = new Animator[10];
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip[] audioClip;
-    [SerializeField] private Image stillView;
+    [SerializeField] private Image stillView, changeStillView;
     [SerializeField] private Sprite[] stillPictures;
     [SerializeField] private TextBoxController textBoxController;
     private string[] splits = new string[5];//splitしたときの代入用配列
@@ -28,11 +28,13 @@ public class AnimationManeger : MonoBehaviour
     BackImageManeger backImageManeger;
     [SerializeField]
     string nextSceneName;
+    bool stillAnimSkip;
 
 
     // Use this for initialization
     void Awake()
     {
+        stillAnimSkip = false;
         nextOrderNum = 0;
         GetAnimationOrder();
         for (int i = 0; i < charactor.Length; i++)
@@ -47,6 +49,7 @@ public class AnimationManeger : MonoBehaviour
     void Start()
     {
         stillView.gameObject.SetActive(false);
+        changeStillView.color = new Color(1, 1, 1, 0);
     }
 
     // Update is called once per frame
@@ -84,19 +87,29 @@ public class AnimationManeger : MonoBehaviour
                     audioSource.clip = audioClip[arrayNum[actionCount]];
                     audioSource.Play();
                 }
-                else if (eventName[actionCount] == "Cgview")
+                else if (eventName[actionCount] == "CgView")
                 {//CG表示
                     stillView.sprite = stillPictures[arrayNum[actionCount]];
-                    PlayerPrefs.SetString(stillPictures[arrayNum[actionCount]].name, stillPictures[arrayNum[actionCount]].name);
+                    string removeString = stillView.sprite.name.Remove(stillView.sprite.name.Length, stillView.sprite.name.Length);
+                    if (!PlayerPrefs.HasKey(removeString))
+                    {
+                        PlayerPrefs.SetInt(removeString, 1);
+                    }
                     StartCoroutine("FadeIn");
                 }
-                else if (eventName[actionCount] == "Cgdel")
+                else if (eventName[actionCount] == "CgDel")
                 {//CG非表示
                     StartCoroutine("FadeOut");
                 }
-                else if (eventName[actionCount] == "Cgmove")
+                else if (eventName[actionCount] == "CgMove")
                 {
                     StartCoroutine(StillAnimFade(arrayNum[actionCount].ToString()));
+                }
+                else if (eventName[actionCount] == "CgChange")
+                {
+                    string removeString = stillView.sprite.name.Remove(stillView.sprite.name.Length, stillView.sprite.name.Length);
+                    PlayerPrefs.SetInt(removeString, PlayerPrefs.GetInt(removeString, PlayerPrefs.GetInt(removeString, 0)) + 1);
+                    StartCoroutine(StillChange(arrayNum[actionCount]));
                 }
                 else if (eventName[actionCount] == "TextBoxFade")
                 {//Textbox表示切り替え
@@ -247,6 +260,7 @@ public class AnimationManeger : MonoBehaviour
     {
         float fadeVal = 0;
         float fadeTime = 1.0f;
+        if (stillAnimSkip) yield break;
         bool del = true, view = true;
         while (del)
         {
@@ -257,8 +271,15 @@ public class AnimationManeger : MonoBehaviour
                 del = false;
                 break;
             }
+            if (stillAnimSkip)
+            {
+                stillView.color = new Color(1, 1, 1, 1);
+                view = false;
+                break;
+            }
             yield return null;
         }
+        if (stillAnimSkip) yield break;
         stillView.gameObject.GetComponent<Animator>().Play(animName);
         fadeVal = 0;
         while (view)
@@ -270,8 +291,39 @@ public class AnimationManeger : MonoBehaviour
                 view = false;
                 break;
             }
+            if (stillAnimSkip)
+            {
+                stillView.color = new Color(1, 1, 1, 1);
+                stillAnimSkip = false;
+                view = false;
+                break;
+            }
             yield return null;
         }
+    }
+
+    private IEnumerator StillChange(int stillNum)
+    {
+        textBoxController.ViewCGs();
+        textBoxController.SwitchTextBox();
+        stillView.gameObject.GetComponent<Animator>().Play("0");
+        stillAnimSkip = true;
+        changeStillView.sprite = stillView.sprite;
+        stillView.sprite = stillPictures[stillNum];
+        changeStillView.color = new Color(1, 1, 1, 1);
+        stillView.color = new Color(1, 1, 1, 1);
+        float fadeTime = 0.5f, count = 0;
+        while (count <= fadeTime)
+        {
+            count += Time.deltaTime;
+            changeStillView.color = new Color(1, 1, 1, 1 - count / fadeTime);
+            yield return null;
+        }
+        changeStillView.color = new Color(1, 1, 1, 0);
+        stillView.color = new Color(1, 1, 1, 1);
+        textBoxController.ViewCGs();
+        textBoxController.SwitchTextBox();
+        yield break;
     }
 
     private void SortCharactorLayer()

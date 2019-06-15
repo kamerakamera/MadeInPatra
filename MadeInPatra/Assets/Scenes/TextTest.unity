@@ -112,6 +112,18 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &326810486 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3777051529234006888, guid: 2e9661da38e19ba4b9092ca5297c87d0,
+    type: 3}
+  m_PrefabInstance: {fileID: 96651159917311219}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &996027220 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1425072137069367886, guid: e4b8cac254d0812409716d4d3edb8762,
@@ -150,11 +162,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: ScenarioScene
       objectReference: {fileID: 0}
-    - target: {fileID: 6086842387798790334, guid: 2e9661da38e19ba4b9092ca5297c87d0,
-        type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 308a9bd89c9eae146a663e54be4a4aea, type: 2}
     - target: {fileID: 96651159166747041, guid: 2e9661da38e19ba4b9092ca5297c87d0,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -222,11 +229,6 @@ PrefabInstance:
       objectReference: {fileID: 996027220}
     - target: {fileID: 96651160305306987, guid: 2e9661da38e19ba4b9092ca5297c87d0,
         type: 3}
-      propertyPath: animationFileName
-      value: TestTextOrder
-      objectReference: {fileID: 0}
-    - target: {fileID: 96651160305306987, guid: 2e9661da38e19ba4b9092ca5297c87d0,
-        type: 3}
       propertyPath: stillAnimationList.Array.data[0]
       value: 
       objectReference: {fileID: 7400000, guid: a78369428bc493740a59eeca4ab21277, type: 2}
@@ -240,6 +242,11 @@ PrefabInstance:
       propertyPath: stillAnimationList.Array.data[2]
       value: 
       objectReference: {fileID: 7400000, guid: 53bdb90b4cc7f9b4f82fcb5740e7d142, type: 2}
+    - target: {fileID: 96651160305306987, guid: 2e9661da38e19ba4b9092ca5297c87d0,
+        type: 3}
+      propertyPath: changeStillView
+      value: 
+      objectReference: {fileID: 326810486}
     - target: {fileID: 96651158849990387, guid: 2e9661da38e19ba4b9092ca5297c87d0,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -278,7 +285,7 @@ PrefabInstance:
     - target: {fileID: 96651158774590649, guid: 2e9661da38e19ba4b9092ca5297c87d0,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -0.000040554653
+      value: 0.000107530475
       objectReference: {fileID: 0}
     - target: {fileID: 96651159883459809, guid: 2e9661da38e19ba4b9092ca5297c87d0,
         type: 3}
@@ -313,6 +320,11 @@ PrefabInstance:
       propertyPath: loadFileName
       value: TestText
       objectReference: {fileID: 0}
+    - target: {fileID: 6086842387798790334, guid: 2e9661da38e19ba4b9092ca5297c87d0,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 308a9bd89c9eae146a663e54be4a4aea, type: 2}
     - target: {fileID: 96651160258235650, guid: 2e9661da38e19ba4b9092ca5297c87d0,
         type: 3}
       propertyPath: m_Value

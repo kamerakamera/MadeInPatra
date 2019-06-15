@@ -12,6 +12,7 @@ public class TitleSceneManeger : MonoBehaviour
     private Animator stillViewsAnimator, startManuAnimator, continuePanelAnimator;
     [SerializeField]
     private Animation fadeScreen;
+    private Still viewStillClass;
     // Start is called before the first frame update
 
     private void Awake()
@@ -75,18 +76,26 @@ public class TitleSceneManeger : MonoBehaviour
         stillViewsAnimator.Play("MoveStill");
     }
 
-    public void SelectStill(Image stillImage)
-    {
-        if (stillImage.IsActive())
+    public void SelectStill(Still still)
+    {//選択したButtonに対応するStillクラスにアクセスしそのcountを参照
+        if (still.ViewCount > 0)
         {
-            stillView.GetComponent<Image>().sprite = stillImage.sprite;
+            stillView.GetComponent<Image>().sprite = still.GetSprite(0);
             stillView.GetComponent<Image>().enabled = true;
+            viewStillClass = still;
         }
     }
 
-    public void BackStillView()
+    public void StillViewButton()
     {
-        stillView.GetComponent<Image>().enabled = false;
+        int nextNum = viewStillClass.Next();
+        if (nextNum == 0)
+        {
+            stillView.GetComponent<Image>().enabled = false;
+            viewStillClass = null;
+            return;
+        }
+        stillView.GetComponent<Image>().sprite = viewStillClass.GetSprite(nextNum);
     }
 
     public void OnMessagesButtonClick()
