@@ -14,6 +14,7 @@ public class TitleSceneManeger : MonoBehaviour
     private Animation fadeScreen;
     private Still viewStillClass;
     private static bool clearFlag;
+    private bool isContinuePanelFade;
     // Start is called before the first frame update
 
     private void Awake()
@@ -60,17 +61,51 @@ public class TitleSceneManeger : MonoBehaviour
         continuePanelAnimator.Play("PanelView");
     }
 
-    public void SelectPanel(GameObject panel){
-        panel.SetActive(true);
+    public void SelectPanel(GameObject panel)
+    {
+        if (!isContinuePanelFade) StartCoroutine(FadeCor(panel, 0.2f, true));
     }
 
-    public void BackLoadPanel(GameObject panel){
-        panel.SetActive(false);
+    IEnumerator FadeCor(GameObject obj, float fadeTime, bool direction)
+    {
+        isContinuePanelFade = true;
+        if (direction) obj.SetActive(true);
+        Image[] images = obj.GetComponentsInChildren<Image>();
+        float[] alphas = new float[images.Length];
+        for (int i = 0; i < images.Length; i++)
+        {
+            alphas[i] = images[i].color.a;//A値の初期値を保存
+            images[i].color = new Color(images[i].color.r, images[i].color.g, images[i].color.b, 0);//ImagesのColorのAだけを0にする
+        }
+
+        float count = 0;
+        while (count <= fadeTime)
+        {
+            for (int i = 0; i < images.Length; i++)
+            {
+                if (direction) images[i].color = new Color(images[i].color.r, images[i].color.g, images[i].color.b, alphas[i] * count / fadeTime);
+                else images[i].color = new Color(images[i].color.r, images[i].color.g, images[i].color.b, alphas[i] - alphas[i] * count / fadeTime);
+            }
+            count += Time.deltaTime;
+            yield return null;
+        }
+        isContinuePanelFade = false;
+        if (!direction) obj.SetActive(false);
+        for (int i = 0; i < images.Length; i++)
+        {
+            images[i].color = new Color(images[i].color.r, images[i].color.g, images[i].color.b, alphas[i]);
+        }
+        yield break;
+    }
+
+    public void BackLoadPanel(GameObject panel)
+    {
+        if (!isContinuePanelFade) StartCoroutine(FadeCor(panel, 0.2f, false));
     }
 
     public void OnContinueClick(string sceneName)
     {
-        StartCoroutine(LoadScene(sceneName));
+        if (!isContinuePanelFade) StartCoroutine(LoadScene(sceneName));
     }
 
     public void OnCGsViewButtonClick()

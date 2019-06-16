@@ -21,10 +21,10 @@ public class SaveManeger : MonoBehaviour
         //PlayerPrefs.SetInt(StringProperty.stillNames[5], 1);
         //PlayerPrefs.SetString(StringProperty.loadSceneName[0], StringProperty.loadSceneName[0]);
         //PlayerPrefs.SetString(StringProperty.loadSceneName[1], StringProperty.loadSceneName[1]);
-        /*foreach (var item in StringProperty.loadSceneName)
+        foreach (var item in StringProperty.loadSceneName)
         {
             PlayerPrefs.SetString(item, item);
-        }*/
+        }
         for (int i = 0; i < stillObj.Length; i++)
         {
             still[i] = stillObj[i].GetComponent<Still>();
