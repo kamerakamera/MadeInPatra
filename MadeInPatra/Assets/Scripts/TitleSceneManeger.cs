@@ -13,6 +13,7 @@ public class TitleSceneManeger : MonoBehaviour
     [SerializeField]
     private Animation fadeScreen;
     private Still viewStillClass;
+    private static bool clearFlag;
     // Start is called before the first frame update
 
     private void Awake()
@@ -59,7 +60,15 @@ public class TitleSceneManeger : MonoBehaviour
         continuePanelAnimator.Play("PanelView");
     }
 
-    public void OnContinueSceneClick(string sceneName)
+    public void SelectPanel(GameObject panel){
+        panel.SetActive(true);
+    }
+
+    public void BackLoadPanel(GameObject panel){
+        panel.SetActive(false);
+    }
+
+    public void OnContinueClick(string sceneName)
     {
         StartCoroutine(LoadScene(sceneName));
     }
