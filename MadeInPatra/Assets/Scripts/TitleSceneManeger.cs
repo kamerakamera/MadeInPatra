@@ -13,8 +13,7 @@ public class TitleSceneManeger : MonoBehaviour
     [SerializeField]
     private Animation fadeScreen;
     private Still viewStillClass;
-    private static bool clearFlag;
-    private bool isContinuePanelFade;
+    private bool isContinuePanelFade, clearMode = false;
     // Start is called before the first frame update
 
     private void Awake()
@@ -27,8 +26,17 @@ public class TitleSceneManeger : MonoBehaviour
         stillsViewPanel.SetActive(false);
         messegeViewPanel.SetActive(false);
         startPanel.SetActive(true);
-        startManuAnimator.Play("StartAnimation");
         stillView.GetComponent<Image>().enabled = false;
+        StartManuAnim("Start");
+        if (clearMode = SaveManeger.Instance.ClearFlag)
+        {
+            if (!PlayerPrefs.HasKey("GameClear") && clearMode)
+            {
+                Debug.Log(SaveManeger.Instance.ClearFlag);
+                StartManuAnim("ChangeClearMode");
+                PlayerPrefs.SetInt("GameClear", 0);
+            }
+        }
     }
 
     // Update is called once per frame
@@ -39,7 +47,7 @@ public class TitleSceneManeger : MonoBehaviour
 
     void DelAnim()
     {
-        startManuAnimator.Play("StartPanelDel");
+        StartManuAnim("PanelDel");
         Invoke("StartPanelDel", 1.0f);
     }
 
@@ -162,7 +170,7 @@ public class TitleSceneManeger : MonoBehaviour
         {
             item.enabled = true;
         }
-        startManuAnimator.Play("StartAnimation");
+        StartManuAnim("Start");
     }
 
     private void StartPanelDel()
@@ -185,6 +193,37 @@ public class TitleSceneManeger : MonoBehaviour
     {
         fadeScreen.Play();
         Invoke("GameOver", 1.0f);
+    }
+
+    private void StartManuAnim(string animName)
+    {
+        if (animName == "Start")
+        {
+            if (clearMode)
+            {
+                startManuAnimator.Play("ClearStartPanelView");
+            }
+            else
+            {
+                startManuAnimator.Play("StartAnimation");
+            }
+        }
+        if (animName == "PanelDel")
+        {
+            if (clearMode)
+            {
+                startManuAnimator.Play("ClearPanelDel");
+            }
+            else
+            {
+                startManuAnimator.Play("StartPanelDel");
+            }
+        }
+        if (animName == "ChangeClearMode")
+        {
+            startManuAnimator.Play("StartAnimation");
+            startManuAnimator.SetBool("change", true);
+        }
     }
 
     private void GameOver()

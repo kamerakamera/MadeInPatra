@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SaveManeger : MonoBehaviour
+public class SaveManeger : Singleton<SaveManeger>
 {
     [SerializeField]
     private GameObject[] stillObj = new GameObject[StringProperty.stillNames.Length];//Still表示関数内にPlayerPrefにKey追加
@@ -14,12 +14,13 @@ public class SaveManeger : MonoBehaviour
     private int[] loadScenePanelCount = new int[]{
         1,3,3,3,3,3,3,2
     };
+    public bool ClearFlag { get; private set; } = false;
     private void Awake()
     {
         PlayerPrefs.DeleteAll();
         //PlayerPrefs.SetInt(StringProperty.stillNames[4], 7);
         //PlayerPrefs.SetInt(StringProperty.stillNames[5], 1);
-        //PlayerPrefs.SetString(StringProperty.loadSceneName[0], StringProperty.loadSceneName[0]);
+        PlayerPrefs.SetInt(StringProperty.stillNames[4], 7);
         //PlayerPrefs.SetString(StringProperty.loadSceneName[1], StringProperty.loadSceneName[1]);
         foreach (var item in StringProperty.loadSceneName)
         {
@@ -84,6 +85,7 @@ public class SaveManeger : MonoBehaviour
             }
             checkContinueNum++;
         }
+        if (loadContinueCount >= StringProperty.loadSceneName.Length) ClearFlag = true;//clearFlagの判定
         for (int i = 0; (loadContinueCount >= 0) && !(i > StringProperty.loadScenePanelName.Length - 1); i++)
         {
             if ((loadContinueCount -= loadScenePanelCount[i]) >= 0)
