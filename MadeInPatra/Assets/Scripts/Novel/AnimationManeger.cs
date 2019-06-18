@@ -90,7 +90,8 @@ public class AnimationManeger : MonoBehaviour
                 else if (eventName[actionCount] == "CgView")
                 {//CG表示
                     stillView.sprite = stillPictures[arrayNum[actionCount]];
-                    string removeString = stillView.sprite.name.Remove(stillView.sprite.name.Length, stillView.sprite.name.Length);
+                    Debug.Log(stillView.sprite.name.Length - 1);
+                    string removeString = stillView.sprite.name.Remove(stillView.sprite.name.Length - 1, 1);//差分の枚数が9枚までしか作れないクソ仕様
                     if (!PlayerPrefs.HasKey(removeString))
                     {
                         PlayerPrefs.SetInt(removeString, 1);

@@ -247,6 +247,18 @@ PrefabInstance:
       propertyPath: changeStillView
       value: 
       objectReference: {fileID: 326810486}
+    - target: {fileID: 96651160305306987, guid: 2e9661da38e19ba4b9092ca5297c87d0,
+        type: 3}
+      propertyPath: stillPictures.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: 573f68dc0d7d20b4c88f20788e91e2ef,
+        type: 3}
+    - target: {fileID: 96651160305306987, guid: 2e9661da38e19ba4b9092ca5297c87d0,
+        type: 3}
+      propertyPath: stillPictures.Array.data[1]
+      value: 
+      objectReference: {fileID: 21300000, guid: 8f95d58a771082a47b22256064c56719,
+        type: 3}
     - target: {fileID: 96651158849990387, guid: 2e9661da38e19ba4b9092ca5297c87d0,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -285,7 +297,7 @@ PrefabInstance:
     - target: {fileID: 96651158774590649, guid: 2e9661da38e19ba4b9092ca5297c87d0,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.000107530475
+      value: 0.00021754108
       objectReference: {fileID: 0}
     - target: {fileID: 96651159883459809, guid: 2e9661da38e19ba4b9092ca5297c87d0,
         type: 3}
