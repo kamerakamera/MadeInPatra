@@ -108,7 +108,8 @@ public class AnimationManeger : MonoBehaviour
                 }
                 else if (eventName[actionCount] == "CgChange")
                 {
-                    string removeString = stillView.sprite.name.Remove(stillView.sprite.name.Length, stillView.sprite.name.Length);
+                    string removeString = stillView.sprite.name.Remove(stillView.sprite.name.Length - 1, 1);
+                    Debug.Log(removeString);
                     PlayerPrefs.SetInt(removeString, PlayerPrefs.GetInt(removeString, PlayerPrefs.GetInt(removeString, 0)) + 1);
                     StartCoroutine(StillChange(arrayNum[actionCount]));
                 }
