@@ -150,9 +150,10 @@ public class TitleSceneManeger : MonoBehaviour
         stillView.GetComponent<Image>().sprite = viewStillClass.GetSprite(nextNum);
     }
 
-    public void OnMessagesButtonClick()
+    public void OnMessagesButtonClick(string loadSceneName)
     {
         DelAnim();
+        StartCoroutine(LoadScene(loadSceneName));
     }
 
     public void OnReturnTitleButtonClick(Animator animator)
