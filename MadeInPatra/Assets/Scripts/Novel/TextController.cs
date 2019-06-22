@@ -9,8 +9,7 @@ public class TextController : MonoBehaviour
     [SerializeField] private ScenarioManeger scenarioManeger;
     [SerializeField] private AnimationManeger animationManeger;
     private float textUpdateInterval = 0.1f, textUpdateTime = 0;
-    private string currentText, huriganaText;
-    private string[] hurigana = new string[100];
+    private string currentText;
     private int textCount = -1, scenarioIndex = 0;
     [SerializeField] private Animator cursorAnim;
     [SerializeField] private TextBoxController textBoxController;
