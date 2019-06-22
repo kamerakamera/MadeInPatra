@@ -583,7 +583,7 @@ Animator:
   m_GameObject: {fileID: 96651158799015335}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 308a9bd89c9eae146a663e54be4a4aea, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -960,7 +960,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.392}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -2004,7 +2004,7 @@ MonoBehaviour:
   audioClip:
   - {fileID: 8300000, guid: 5722c19a597fe2d439a0824c0302ed1f, type: 3}
   stillView: {fileID: 96651158799015333}
-  changeStillView: {fileID: 0}
+  changeStillView: {fileID: 3777051529234006888}
   stillPictures:
   - {fileID: 21300000, guid: 8f95d58a771082a47b22256064c56719, type: 3}
   - {fileID: 21300000, guid: 4cb80d3c99f211349ad114126999945e, type: 3}
