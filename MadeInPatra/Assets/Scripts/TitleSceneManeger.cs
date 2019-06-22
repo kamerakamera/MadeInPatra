@@ -7,7 +7,9 @@ using UnityEngine.SceneManagement;
 public class TitleSceneManeger : MonoBehaviour
 {
     [SerializeField]
-    private GameObject startPanel, continuePanel, stillsViewPanel, messegeViewPanel, stillView;
+    private GameObject startPanel, continuePanel, stillsViewPanel, stillView;
+    [SerializeField]
+    private Image messagesButtonImage;
     [SerializeField]
     private Animator stillViewsAnimator, startManuAnimator, continuePanelAnimator;
     [SerializeField]
@@ -24,7 +26,6 @@ public class TitleSceneManeger : MonoBehaviour
     {
         continuePanel.SetActive(false);
         stillsViewPanel.SetActive(false);
-        messegeViewPanel.SetActive(false);
         startPanel.SetActive(true);
         stillView.GetComponent<Image>().enabled = false;
         StartManuAnim("Start");
@@ -166,11 +167,11 @@ public class TitleSceneManeger : MonoBehaviour
     {
         continuePanel.SetActive(false);
         stillsViewPanel.SetActive(false);
-        messegeViewPanel.SetActive(false);
         foreach (var item in startPanel.GetComponentsInChildren<Image>())
         {
             item.enabled = true;
         }
+        messagesButtonImage.enabled = true;
         StartManuAnim("Start");
     }
 
@@ -180,6 +181,7 @@ public class TitleSceneManeger : MonoBehaviour
         {
             item.enabled = false;
         }
+        messagesButtonImage.enabled = false;
     }
 
     private IEnumerator LoadScene(string sceneName)
