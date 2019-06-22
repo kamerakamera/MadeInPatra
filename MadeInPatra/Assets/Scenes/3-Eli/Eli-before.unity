@@ -321,6 +321,16 @@ PrefabInstance:
       propertyPath: m_AnchorMin.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 96651158774590649, guid: 2e9661da38e19ba4b9092ca5297c87d0,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.00007287847
+      objectReference: {fileID: 0}
+    - target: {fileID: 96651160349104589, guid: 2e9661da38e19ba4b9092ca5297c87d0,
+        type: 3}
+      propertyPath: loadFileName
+      value: Eli-before
+      objectReference: {fileID: 0}
     - target: {fileID: 96651160535229159, guid: 2e9661da38e19ba4b9092ca5297c87d0,
         type: 3}
       propertyPath: charactors.Array.size
@@ -336,16 +346,6 @@ PrefabInstance:
       propertyPath: charactors.Array.data[1]
       value: 
       objectReference: {fileID: 846636898}
-    - target: {fileID: 96651158774590649, guid: 2e9661da38e19ba4b9092ca5297c87d0,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0.00016910087
-      objectReference: {fileID: 0}
-    - target: {fileID: 96651160349104589, guid: 2e9661da38e19ba4b9092ca5297c87d0,
-        type: 3}
-      propertyPath: loadFileName
-      value: Eli-before
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2e9661da38e19ba4b9092ca5297c87d0, type: 3}
 --- !u!1001 &846636896

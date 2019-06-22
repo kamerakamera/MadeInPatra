@@ -621,6 +621,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 96651160305306987, guid: 2e9661da38e19ba4b9092ca5297c87d0,
         type: 3}
+      propertyPath: stillPictures.Array.size
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 96651160305306987, guid: 2e9661da38e19ba4b9092ca5297c87d0,
+        type: 3}
       propertyPath: charactor.Array.data[0]
       value: 
       objectReference: {fileID: 496127479}
@@ -659,6 +664,48 @@ PrefabInstance:
       propertyPath: nextSceneName
       value: Nanashi-before
       objectReference: {fileID: 0}
+    - target: {fileID: 96651160305306987, guid: 2e9661da38e19ba4b9092ca5297c87d0,
+        type: 3}
+      propertyPath: stillPictures.Array.data[2]
+      value: 
+      objectReference: {fileID: 21300000, guid: bcbe58555ee208646a3d48461fcf0fb6,
+        type: 3}
+    - target: {fileID: 96651160305306987, guid: 2e9661da38e19ba4b9092ca5297c87d0,
+        type: 3}
+      propertyPath: stillPictures.Array.data[3]
+      value: 
+      objectReference: {fileID: 21300000, guid: 44bc9d9dd906bc6479ebe4d3c827b284,
+        type: 3}
+    - target: {fileID: 96651160305306987, guid: 2e9661da38e19ba4b9092ca5297c87d0,
+        type: 3}
+      propertyPath: stillPictures.Array.data[4]
+      value: 
+      objectReference: {fileID: 21300000, guid: 4d50cdb6f0770114c83cedb6cb92f652,
+        type: 3}
+    - target: {fileID: 96651160305306987, guid: 2e9661da38e19ba4b9092ca5297c87d0,
+        type: 3}
+      propertyPath: stillPictures.Array.data[5]
+      value: 
+      objectReference: {fileID: 21300000, guid: 4c4c1989eee7a5545a7271841ccf0e7e,
+        type: 3}
+    - target: {fileID: 96651160305306987, guid: 2e9661da38e19ba4b9092ca5297c87d0,
+        type: 3}
+      propertyPath: stillPictures.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: 5bbed5b6cb62b6e4487f126cabe87528,
+        type: 3}
+    - target: {fileID: 96651160305306987, guid: 2e9661da38e19ba4b9092ca5297c87d0,
+        type: 3}
+      propertyPath: stillPictures.Array.data[1]
+      value: 
+      objectReference: {fileID: 21300000, guid: aaea91cf6f37e7343b817bfe06934d66,
+        type: 3}
+    - target: {fileID: 96651160305306987, guid: 2e9661da38e19ba4b9092ca5297c87d0,
+        type: 3}
+      propertyPath: stillPictures.Array.data[6]
+      value: 
+      objectReference: {fileID: 21300000, guid: baecda4161a001840a0103e54a2a0afa,
+        type: 3}
     - target: {fileID: 96651158849990387, guid: 2e9661da38e19ba4b9092ca5297c87d0,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -688,6 +735,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMin.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 96651158774590649, guid: 2e9661da38e19ba4b9092ca5297c87d0,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.00028913323
+      objectReference: {fileID: 0}
+    - target: {fileID: 96651160349104589, guid: 2e9661da38e19ba4b9092ca5297c87d0,
+        type: 3}
+      propertyPath: loadFileName
+      value: Mary-after
       objectReference: {fileID: 0}
     - target: {fileID: 96651160535229159, guid: 2e9661da38e19ba4b9092ca5297c87d0,
         type: 3}
@@ -724,16 +781,6 @@ PrefabInstance:
       propertyPath: charactors.Array.data[5]
       value: 
       objectReference: {fileID: 669274601}
-    - target: {fileID: 96651158774590649, guid: 2e9661da38e19ba4b9092ca5297c87d0,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0.000035676916
-      objectReference: {fileID: 0}
-    - target: {fileID: 96651160349104589, guid: 2e9661da38e19ba4b9092ca5297c87d0,
-        type: 3}
-      propertyPath: loadFileName
-      value: Mary-after
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2e9661da38e19ba4b9092ca5297c87d0, type: 3}
 --- !u!1001 &1357390318
