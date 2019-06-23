@@ -5663,6 +5663,7 @@ GameObject:
   - component: {fileID: 585596232}
   - component: {fileID: 585596231}
   - component: {fileID: 585596233}
+  - component: {fileID: 585596234}
   m_Layer: 5
   m_Name: FadeImage
   m_TagString: Untagged
@@ -5742,6 +5743,18 @@ Animation:
   m_PlayAutomatically: 0
   m_AnimatePhysics: 0
   m_CullingType: 0
+--- !u!225 &585596234
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 585596229}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &593633215
 GameObject:
   m_ObjectHideFlags: 0
