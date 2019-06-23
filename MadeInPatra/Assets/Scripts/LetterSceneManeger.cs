@@ -12,7 +12,7 @@ public class LetterSceneManeger : MonoBehaviour
     private AnimationClip[] fadeAnimation;
     List<Sprite> letters = new List<Sprite>();
     [SerializeField]
-    private GameObject letterPanel, selectPanel;
+    private GameObject letterPanel;
 
     // Start is called before the first frame update
 
@@ -21,18 +21,17 @@ public class LetterSceneManeger : MonoBehaviour
         fadeScreen.gameObject.SetActive(true);
         fadeScreen.clip = fadeAnimation[0];
         fadeScreen.Play();
-        SwitchFadeScreen();
     }
 
     // Update is called once per frame
-    void Update()
+    public void RightSwap()
     {
-
+        SwapLetter.Instance.animator.Play("TakeRightLetter");
     }
 
-    private void SwitchFadeScreen()
+    public void LeftSwap()
     {
-        fadeScreen.gameObject.SetActive(!fadeScreen.gameObject.activeSelf);
+        SwapLetter.Instance.animator.Play("TakeLeftLetter");
     }
 
     public void OnMemberClick(string memberName)
@@ -44,10 +43,6 @@ public class LetterSceneManeger : MonoBehaviour
         }
     }
 
-    private void Switch(){
-        
-    }
-
     public void OnReturnTitleClick(string sceneName)
     {
         StartCoroutine(OnReturnTitleClickCor(sceneName));
@@ -55,7 +50,6 @@ public class LetterSceneManeger : MonoBehaviour
 
     private IEnumerator OnReturnTitleClickCor(string sceneName)
     {
-        SwitchFadeScreen();
         fadeScreen.clip = fadeAnimation[1];
         fadeScreen.Play("FadeView");
         yield return new WaitForSeconds(1.0f);
