@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class AnimationManeger : MonoBehaviour
+public class AnimationManeger : Singleton<AnimationManeger>
 {
     private int audioClipCount;
     string[] eventName;
@@ -36,7 +36,6 @@ public class AnimationManeger : MonoBehaviour
     {
         stillAnimSkip = false;
         nextOrderNum = 0;
-        GetAnimationOrder();
         for (int i = 0; i < charactor.Length; i++)
         {
             animator[i] = charactor[i].GetComponent<Animator>();
@@ -186,25 +185,22 @@ public class AnimationManeger : MonoBehaviour
         ExecuteAnimation(textLineNum);
         yield break;
     }
-    private void GetAnimationOrder()
+    public void GetAnimationOrder(string[] orderText, int[] orderLine)
     {
-        var orderText = Resources.Load<TextAsset>("Scenario/" + animationFileName);//ordertextには命令 行数 (arrayNum)で記述
-        if (orderText == null)
-        {
-            Debug.Log("orderText load error");
-            return;
-        }
-        eventName = orderText.text.Split(new string[] { "\r\n" }, System.StringSplitOptions.None);//それぞれの命令は改行で区切る
-        eventLine = new int[eventName.Length];//eventの数だけ要素数確保
+        eventName = orderText;
+        eventLine = orderLine;//eventの数だけ要素数確保
         arrayNum = new int[eventName.Length];//上と同じ
         nextOrder = new string[eventName.Length];
         for (int i = 0; i < eventName.Length; i++)
         {
             splits = eventName[i].Split(new string[] { " " }, System.StringSplitOptions.None);//Split用配列に代入
             eventName[i] = splits[0];//event名代入
-            eventLine[i] = int.Parse(splits[1]);//event行数
-            arrayNum[i] = int.Parse(splits[2]);//charactor,画像,音声などを要素数で指定
-            if (eventName[i] == "ChangePos" || eventName[i] == "ChangeSprite" || eventName[i] == "SwichPos") { nextOrder[nextOrderNum] = splits[3]; nextOrderNum++; }
+            //eventLine[i] = int.Parse(splits[1]);//event行数
+            arrayNum[i] = int.Parse(splits[1]);//charactor,画像,音声などを要素数で指定
+            if (eventName[i] == "ChangePos" || eventName[i] == "ChangeSprite" || eventName[i] == "SwichPos")
+            {
+                nextOrder[nextOrderNum] = splits[2]; nextOrderNum++;
+            }
             for (int j = 0; j < splits.Length; j++)
             {
                 splits[j] = string.Empty;

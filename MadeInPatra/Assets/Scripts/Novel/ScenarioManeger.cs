@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ScenarioManeger : MonoBehaviour
+public class ScenarioManeger : Singleton<ScenarioManeger>
 {
     public string loadFileName;
     private string[] scenarios;
@@ -11,7 +11,7 @@ public class ScenarioManeger : MonoBehaviour
     // Use this for initialization
     void Awake()
     {
-        GetScenario();
+
     }
     void Start()
     {
@@ -24,15 +24,9 @@ public class ScenarioManeger : MonoBehaviour
 
     }
 
-    void GetScenario()
+    public void GetScenario(string[] loadScenarioText)
     {
-        var scenarioText = Resources.Load<TextAsset>("Scenario/" + loadFileName);//Resourceファイルからシナリオをロードする
-        if (scenarioText == null)
-        {
-            Debug.Log("load miss");
-            return;
-        }
-        scenarios = scenarioText.text.Split(new string[] { ">" }, System.StringSplitOptions.None);
+        scenarios = loadScenarioText;
         for (int i = 0; i < scenarios.Length; i++)
         {
             if (scenarios[i].Length / textLength >= 1)
@@ -43,7 +37,6 @@ public class ScenarioManeger : MonoBehaviour
                 }
             }
         }
-        Resources.UnloadAsset(scenarioText);
         textLine = scenarios.Length;
         currentIndex = 0;
         Debug.Log(textLine);
