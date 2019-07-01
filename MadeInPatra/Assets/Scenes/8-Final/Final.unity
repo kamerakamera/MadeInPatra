@@ -512,7 +512,7 @@ PrefabInstance:
     - target: {fileID: 96651160305306987, guid: 2e9661da38e19ba4b9092ca5297c87d0,
         type: 3}
       propertyPath: stillPictures.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 96651160305306987, guid: 2e9661da38e19ba4b9092ca5297c87d0,
         type: 3}
@@ -528,19 +528,19 @@ PrefabInstance:
         type: 3}
       propertyPath: stillPictures.Array.data[0]
       value: 
-      objectReference: {fileID: 21300000, guid: 7f4e5826c0109d5488a8d22cce53a3a9,
+      objectReference: {fileID: 21300000, guid: 93bf613ea7965df4f99a45403fa78851,
         type: 3}
     - target: {fileID: 96651160305306987, guid: 2e9661da38e19ba4b9092ca5297c87d0,
         type: 3}
       propertyPath: stillPictures.Array.data[1]
       value: 
-      objectReference: {fileID: 21300000, guid: dfdc33d2fbf3e6b4b8663482dcec279d,
+      objectReference: {fileID: 21300000, guid: edeea12e7be5df04db4345c5cb3751a5,
         type: 3}
     - target: {fileID: 96651160305306987, guid: 2e9661da38e19ba4b9092ca5297c87d0,
         type: 3}
       propertyPath: stillPictures.Array.data[2]
       value: 
-      objectReference: {fileID: 21300000, guid: b4d163cb741ecef4f88eb61f66504a7e,
+      objectReference: {fileID: 21300000, guid: d3efb66d4880bb546a3a900aa51aa388,
         type: 3}
     - target: {fileID: 96651160305306987, guid: 2e9661da38e19ba4b9092ca5297c87d0,
         type: 3}
@@ -572,6 +572,12 @@ PrefabInstance:
       propertyPath: charactor.Array.data[5]
       value: 
       objectReference: {fileID: 887141732}
+    - target: {fileID: 96651160305306987, guid: 2e9661da38e19ba4b9092ca5297c87d0,
+        type: 3}
+      propertyPath: stillPictures.Array.data[3]
+      value: 
+      objectReference: {fileID: 21300000, guid: 525c5fcee205d8446a30f6d08bc3a1bd,
+        type: 3}
     - target: {fileID: 96651158849990387, guid: 2e9661da38e19ba4b9092ca5297c87d0,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -605,12 +611,7 @@ PrefabInstance:
     - target: {fileID: 96651158774590649, guid: 2e9661da38e19ba4b9092ca5297c87d0,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -0.00008615055
-      objectReference: {fileID: 0}
-    - target: {fileID: 96651160349104589, guid: 2e9661da38e19ba4b9092ca5297c87d0,
-        type: 3}
-      propertyPath: loadFileName
-      value: Final
+      value: -0.000016116937
       objectReference: {fileID: 0}
     - target: {fileID: 96651160535229159, guid: 2e9661da38e19ba4b9092ca5297c87d0,
         type: 3}
@@ -651,8 +652,56 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: dfdc33d2fbf3e6b4b8663482dcec279d,
+      objectReference: {fileID: 0}
+    - target: {fileID: 96651159883459809, guid: 2e9661da38e19ba4b9092ca5297c87d0,
         type: 3}
+      propertyPath: backGroundImageList.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 96651159883459809, guid: 2e9661da38e19ba4b9092ca5297c87d0,
+        type: 3}
+      propertyPath: backGroundImageList.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: 29b771f9a6227914ab8ce33f6ef8624e,
+        type: 3}
+    - target: {fileID: 96651159883459809, guid: 2e9661da38e19ba4b9092ca5297c87d0,
+        type: 3}
+      propertyPath: backGroundImageList.Array.data[1]
+      value: 
+      objectReference: {fileID: 21300000, guid: 31efe72ca4e8a204390064922bf2497e,
+        type: 3}
+    - target: {fileID: 96651159883459809, guid: 2e9661da38e19ba4b9092ca5297c87d0,
+        type: 3}
+      propertyPath: backGroundImageList.Array.data[2]
+      value: 
+      objectReference: {fileID: 21300000, guid: f6459c5ed2fda66488d66e2cf95ac563,
+        type: 3}
+    - target: {fileID: 96651159883459809, guid: 2e9661da38e19ba4b9092ca5297c87d0,
+        type: 3}
+      propertyPath: backGroundImageList.Array.data[3]
+      value: 
+      objectReference: {fileID: 21300000, guid: 31efe72ca4e8a204390064922bf2497e,
+        type: 3}
+    - target: {fileID: 96651160668091322, guid: 2e9661da38e19ba4b9092ca5297c87d0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3777051529234006888, guid: 2e9661da38e19ba4b9092ca5297c87d0,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 96651159781269953, guid: 2e9661da38e19ba4b9092ca5297c87d0,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 96651160349104589, guid: 2e9661da38e19ba4b9092ca5297c87d0,
+        type: 3}
+      propertyPath: loadFileName
+      value: Final
+      objectReference: {fileID: 0}
     - target: {fileID: 96651160258235650, guid: 2e9661da38e19ba4b9092ca5297c87d0,
         type: 3}
       propertyPath: m_Value
@@ -663,12 +712,6 @@ PrefabInstance:
       propertyPath: m_Size
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 96651159883459809, guid: 2e9661da38e19ba4b9092ca5297c87d0,
-        type: 3}
-      propertyPath: backGroundImageList.Array.data[0]
-      value: 
-      objectReference: {fileID: 21300000, guid: 3606068e4116bfc40a74c909e85b6966,
-        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2e9661da38e19ba4b9092ca5297c87d0, type: 3}
 --- !u!1001 &1684721973

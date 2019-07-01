@@ -1056,7 +1056,7 @@ PrefabInstance:
     - target: {fileID: 96651158774590649, guid: 2e9661da38e19ba4b9092ca5297c87d0,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -0.000006941514
+      value: 0.000015116265
       objectReference: {fileID: 0}
     - target: {fileID: 96651160535229159, guid: 2e9661da38e19ba4b9092ca5297c87d0,
         type: 3}
@@ -1086,15 +1086,26 @@ PrefabInstance:
         type: 3}
     - target: {fileID: 96651159883459809, guid: 2e9661da38e19ba4b9092ca5297c87d0,
         type: 3}
+      propertyPath: backGroundImageList.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 96651159883459809, guid: 2e9661da38e19ba4b9092ca5297c87d0,
+        type: 3}
       propertyPath: backGroundImageList.Array.data[0]
       value: 
-      objectReference: {fileID: 21300000, guid: e1cb1f1dd7f711548b323aa69924cdff,
+      objectReference: {fileID: 21300000, guid: 1e769022605bfae47aac869785a87644,
         type: 3}
     - target: {fileID: 96651159883459809, guid: 2e9661da38e19ba4b9092ca5297c87d0,
         type: 3}
       propertyPath: backGroundImageList.Array.data[1]
       value: 
-      objectReference: {fileID: 21300000, guid: f0b478895dcee8a45b037e91515880db,
+      objectReference: {fileID: 21300000, guid: 7bc61ecde0329f2408e60cd83e0d1ace,
+        type: 3}
+    - target: {fileID: 96651159883459809, guid: 2e9661da38e19ba4b9092ca5297c87d0,
+        type: 3}
+      propertyPath: backGroundImageList.Array.data[2]
+      value: 
+      objectReference: {fileID: 21300000, guid: 5180e5bd8ecb3034e8a60858bcca1c32,
         type: 3}
     - target: {fileID: 96651160668091322, guid: 2e9661da38e19ba4b9092ca5297c87d0,
         type: 3}

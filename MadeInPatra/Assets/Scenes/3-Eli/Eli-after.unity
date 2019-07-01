@@ -273,6 +273,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 96651160305306987, guid: 2e9661da38e19ba4b9092ca5297c87d0,
         type: 3}
+      propertyPath: stillPictures.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 96651160305306987, guid: 2e9661da38e19ba4b9092ca5297c87d0,
+        type: 3}
       propertyPath: charactor.Array.data[0]
       value: 
       objectReference: {fileID: 1351290350}
@@ -291,6 +296,18 @@ PrefabInstance:
       propertyPath: nextSceneName
       value: Charlotte-before
       objectReference: {fileID: 0}
+    - target: {fileID: 96651160305306987, guid: 2e9661da38e19ba4b9092ca5297c87d0,
+        type: 3}
+      propertyPath: stillPictures.Array.data[1]
+      value: 
+      objectReference: {fileID: 21300000, guid: 592d080b18a00314bb0b9713f9ee6a95,
+        type: 3}
+    - target: {fileID: 96651160305306987, guid: 2e9661da38e19ba4b9092ca5297c87d0,
+        type: 3}
+      propertyPath: stillPictures.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: 76bca891ed9666c44817253011678662,
+        type: 3}
     - target: {fileID: 96651158849990387, guid: 2e9661da38e19ba4b9092ca5297c87d0,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -324,12 +341,7 @@ PrefabInstance:
     - target: {fileID: 96651158774590649, guid: 2e9661da38e19ba4b9092ca5297c87d0,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.00014568561
-      objectReference: {fileID: 0}
-    - target: {fileID: 96651160349104589, guid: 2e9661da38e19ba4b9092ca5297c87d0,
-        type: 3}
-      propertyPath: loadFileName
-      value: Eli-after
+      value: 0.00013053129
       objectReference: {fileID: 0}
     - target: {fileID: 96651160535229159, guid: 2e9661da38e19ba4b9092ca5297c87d0,
         type: 3}
@@ -346,6 +358,22 @@ PrefabInstance:
       propertyPath: charactors.Array.data[1]
       value: 
       objectReference: {fileID: 291547974}
+    - target: {fileID: 96651159883459809, guid: 2e9661da38e19ba4b9092ca5297c87d0,
+        type: 3}
+      propertyPath: backGroundImageList.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 96651159883459809, guid: 2e9661da38e19ba4b9092ca5297c87d0,
+        type: 3}
+      propertyPath: backGroundImageList.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: 31efe72ca4e8a204390064922bf2497e,
+        type: 3}
+    - target: {fileID: 96651160349104589, guid: 2e9661da38e19ba4b9092ca5297c87d0,
+        type: 3}
+      propertyPath: loadFileName
+      value: Eli-after
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2e9661da38e19ba4b9092ca5297c87d0, type: 3}
 --- !u!1001 &1351290349

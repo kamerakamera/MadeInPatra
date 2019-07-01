@@ -360,6 +360,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 96651160305306987, guid: 2e9661da38e19ba4b9092ca5297c87d0,
         type: 3}
+      propertyPath: stillPictures.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 96651160305306987, guid: 2e9661da38e19ba4b9092ca5297c87d0,
+        type: 3}
       propertyPath: charactor.Array.data[0]
       value: 
       objectReference: {fileID: 897186927}
@@ -408,6 +413,11 @@ PrefabInstance:
       propertyPath: m_AnchorMin.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 96651158774590649, guid: 2e9661da38e19ba4b9092ca5297c87d0,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.000088641296
+      objectReference: {fileID: 0}
     - target: {fileID: 96651160535229159, guid: 2e9661da38e19ba4b9092ca5297c87d0,
         type: 3}
       propertyPath: charactors.Array.size
@@ -423,11 +433,12 @@ PrefabInstance:
       propertyPath: charactors.Array.data[1]
       value: 
       objectReference: {fileID: 968379832}
-    - target: {fileID: 96651158774590649, guid: 2e9661da38e19ba4b9092ca5297c87d0,
+    - target: {fileID: 96651159883459809, guid: 2e9661da38e19ba4b9092ca5297c87d0,
         type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0.0000815301
-      objectReference: {fileID: 0}
+      propertyPath: backGroundImageList.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: 31efe72ca4e8a204390064922bf2497e,
+        type: 3}
     - target: {fileID: 96651160349104589, guid: 2e9661da38e19ba4b9092ca5297c87d0,
         type: 3}
       propertyPath: loadFileName
