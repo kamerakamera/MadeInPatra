@@ -11,26 +11,23 @@ public class SwapLetter : Singleton<SwapLetter>
     private bool isAnim;
     [SerializeField]
     public Animator animator;
+    private int LetterIndex;
     // Start is called before the first frame update
-    private void Start()
+    private void Start()//初期化
     {
         isAnim = false;
-    }
-    private void Update()
-    {
-        if (Input.GetKeyDown("a") && !isAnim)
-        {
-            animator.Play("TakeLeftLetter");
-        }
+        viewLetter.sprite = LoadLetters.Instance.GetNextLetter("right");
+        SetLetterSize();
     }
 
-    private void StartSwap()
+    private void StartSwap(string direction)
     {
         isAnim = true;
+        underLetter.sprite = LoadLetters.instance.GetNextLetter(direction);
+        SetLetterSize();
     }
     private void ViewFront()
     {
-        Debug.Log("changefront");
         underLetter.gameObject.transform.SetAsLastSibling();
     }
 
@@ -39,11 +36,28 @@ public class SwapLetter : Singleton<SwapLetter>
         underLetter.gameObject.transform.SetAsFirstSibling();
     }
 
+    private void ViewLetterFront()
+    {
+        viewLetter.gameObject.transform.SetAsLastSibling();
+    }
+
+    private void ViewLetterBack()
+    {
+        viewLetter.gameObject.transform.SetAsFirstSibling();
+    }
+
     private void ChangeImage()
     {
         swapSp = viewLetter.sprite;
         viewLetter.sprite = underLetter.sprite;
         underLetter.sprite = swapSp;
         isAnim = false;
+        SetLetterSize();
+    }
+
+    private void SetLetterSize()
+    {
+        viewLetter.SetNativeSize();
+        underLetter.SetNativeSize();
     }
 }
