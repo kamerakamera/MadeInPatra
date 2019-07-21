@@ -14,44 +14,33 @@ public class SaveManeger : Singleton<SaveManeger>
     private int[] loadScenePanelCount = new int[]{
         1,3,3,3,3,3,3,2
     };
+    private int[] stillDebugCount = new int[]{
+        1,2,2,2,7,1,1,2,1,1
+    };
     public bool ClearFlag { get; private set; } = false;
     private void Awake()
     {
+        //デバッグ用
+        #region 
         PlayerPrefs.DeleteAll();
-        //PlayerPrefs.SetInt(StringProperty.stillNames[4], 7);
-        //PlayerPrefs.SetInt(StringProperty.stillNames[5], 1);
         PlayerPrefs.SetInt(StringProperty.stillNames[4], 7);
-        //PlayerPrefs.SetString(StringProperty.loadSceneName[1], StringProperty.loadSceneName[1]);
         foreach (var item in StringProperty.loadSceneName)
         {
             PlayerPrefs.SetString(item, item);
         }
+        for (int i = 0; i < StringProperty.stillNames.Length; i++)
+        {
+            PlayerPrefs.SetInt(StringProperty.stillNames[i], stillDebugCount[i]);
+        }
+        #endregion
+
         for (int i = 0; i < stillObj.Length; i++)
         {
             still[i] = stillObj[i].GetComponent<Still>();
         }
-        foreach (var item in loadPanelButton)
+        foreach (var item in loadPanelButton)//loadButton初期化
         {
             item.SetActive(false);
-        }
-        checkStillNum = 0;
-        //Stillの所持チェック→PlayerPrefからInt参照にして枚数を確認
-        while (checkStillNum < StringProperty.stillNames.Length)
-        {
-            if (PlayerPrefs.HasKey(StringProperty.stillNames[checkStillNum]))
-            {
-                //StillViewの変数に開放枚数を代入
-                stillObj[checkStillNum].SetActive(true);
-                still[checkStillNum].ViewCount = PlayerPrefs.GetInt(StringProperty.stillNames[checkStillNum], 0);
-                Debug.Log(StringProperty.stillNames[checkStillNum] + "のStilを所持しています！");
-            }
-            else
-            {
-                stillObj[checkStillNum].SetActive(false);
-                still[checkStillNum].ViewCount = 0;
-                Debug.Log(StringProperty.stillNames[checkStillNum] + "のStilを所持していません！");
-            }
-            checkStillNum++;
         }
         checkContinueNum = 0;
         loadContinueCount = 0;
@@ -85,7 +74,11 @@ public class SaveManeger : Singleton<SaveManeger>
             }
             checkContinueNum++;
         }
-        if (loadContinueCount >= StringProperty.loadSceneName.Length) ClearFlag = true;//clearFlagの判定
+        if (loadContinueCount >= StringProperty.loadSceneName.Length)
+        {
+            ClearFlag = true;//clearFlagの判定
+            PlayerPrefs.SetInt(StringProperty.stillNames[9], 1);//ClearChekiのStill開放への追加
+        }
         for (int i = 0; (loadContinueCount >= 0) && !(i > StringProperty.loadScenePanelName.Length - 1); i++)
         {
             if ((loadContinueCount -= loadScenePanelCount[i]) >= 0)
@@ -97,6 +90,26 @@ public class SaveManeger : Singleton<SaveManeger>
         {
             item.SetActive(false);
         }
+        checkStillNum = 0;
+        //Stillの所持チェック→PlayerPrefからInt参照にして枚数を確認
+        while (checkStillNum < StringProperty.stillNames.Length)
+        {
+            if (PlayerPrefs.HasKey(StringProperty.stillNames[checkStillNum]))
+            {
+                //StillViewの変数に開放枚数を代入
+                stillObj[checkStillNum].SetActive(true);
+                still[checkStillNum].ViewCount = PlayerPrefs.GetInt(StringProperty.stillNames[checkStillNum], 0);
+                Debug.Log(StringProperty.stillNames[checkStillNum] + "のStilを所持しています！");
+            }
+            else
+            {
+                stillObj[checkStillNum].SetActive(false);
+                still[checkStillNum].ViewCount = 0;
+                Debug.Log(StringProperty.stillNames[checkStillNum] + "のStilを所持していません！");
+            }
+            checkStillNum++;
+        }
+
     }
     // Start is called before the first frame update
 

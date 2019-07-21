@@ -22,18 +22,16 @@ public class StringProperty
         "sleep"/*眠る*/
     };
     public static string[] stillNames = new string[]{//Stillの名前を事前に格納,差分がある場合はStillの差分枚数の記述はしないこと(Editer上で行います)
-        "0",
-        "1",
-        "2",
-        "3",
+        "Beginning",
+        "Eli-maid",
+        "Charlotte-maid",
+        "Mico-Maid",
         "Marry-maid",
         "LastBattle",
-        "Marry-maid2",
-        "Marry-maid3",
-        "Marry-maid4",
-        "Marry-maid5",
-        "Marry-maid6",
-        "Marry-maid7",
+        "Final-first",
+        "Final-second",
+        "Final-third",
+        "ClearCheki",
     };
 
     public static string[] loadSceneName = new string[]{
