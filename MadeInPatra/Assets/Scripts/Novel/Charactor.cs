@@ -6,8 +6,8 @@ public class Charactor : MonoBehaviour
 {
     Dictionary<string, Vector3> charactorPos = new Dictionary<string, Vector3>{
         {"center",new Vector3(400f, 150f, 1000f)},
-        {"sideLeft",new Vector3(-500f, 150f, 1000f)},
-        {"sideRight",new Vector3(1300f, 150f, 1000f)},
+        {"sideRight",new Vector3(-500f, 150f, 1000f)},
+        {"sideLeft",new Vector3(1300f, 150f, 1000f)},
         {"right",new Vector3(-50f, 150f, 1000f)},
         {"left",new Vector3(850f, 150f, 1000f)},
         {"out",new Vector3(1000f,1000f,1000f)}
@@ -96,6 +96,7 @@ public class Charactor : MonoBehaviour
     public IEnumerator ChangeSpriteCor(string nextExpression)
     {
         beforeSprite.sprite = nowSprite.sprite;
+        Debug.Log(nextExpression);
         nowSprite.sprite = changeSprite[nextExpression];
         animator.Play("ChangeSprite");
         yield break;
