@@ -7,24 +7,25 @@ public class EndrollLetter : MonoBehaviour
 {
     [SerializeField]
     private Image image;
-    private Sprite imageList;
-    private int letterCount, viewLetterNum = 8;//手紙の枚数
+    Sprite[] loadLetters;
+    int loadCount = 0;
 
     private void Start()
     {
-
+        GetLetters();
+        loadCount = 0;
     }
-
-    private void SetLetter()
+    private void GetLetters()
     {
-        var letter = Resources.Load<Sprite>("Letter/patra/" + "letter" + Random.Range(0, letterCount));//手紙の名前を"letter" + "0~手紙の枚数文"に名前指定
-        if (letter == null)
-        {
-            Debug.Log("nothing letter");
-            return;
-        }
-        image.sprite = letter;
-        Resources.UnloadAsset(letter);
+        loadLetters = LoadEndrollLetter.Instance.LoadSprite;
+        Debug.Log(loadLetters.ToString());
     }
 
+    public void SetLetter()//letterchange時にAnimationから呼び出し、LoadするたびCountが進む
+    {
+
+        image.sprite = loadLetters[loadCount];
+        image.SetNativeSize();
+        loadCount++;
+    }
 }
