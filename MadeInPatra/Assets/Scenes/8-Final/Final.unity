@@ -1143,11 +1143,6 @@ PrefabInstance:
       propertyPath: charactors.Array.data[11]
       value: 
       objectReference: {fileID: 1447665729}
-    - target: {fileID: 96651158799015333, guid: 2e9661da38e19ba4b9092ca5297c87d0,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 96651159883459809, guid: 2e9661da38e19ba4b9092ca5297c87d0,
         type: 3}
       propertyPath: backGroundImageList.Array.size
@@ -1197,11 +1192,6 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: -610
       objectReference: {fileID: 0}
-    - target: {fileID: 96651160668091322, guid: 2e9661da38e19ba4b9092ca5297c87d0,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 96651160258235650, guid: 2e9661da38e19ba4b9092ca5297c87d0,
         type: 3}
       propertyPath: m_Value
@@ -1211,21 +1201,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Size
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 96651160202148682, guid: 2e9661da38e19ba4b9092ca5297c87d0,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3777051529234006888, guid: 2e9661da38e19ba4b9092ca5297c87d0,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 96651159781269953, guid: 2e9661da38e19ba4b9092ca5297c87d0,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 96651160349104589, guid: 2e9661da38e19ba4b9092ca5297c87d0,
         type: 3}
@@ -1238,6 +1213,36 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: edd3b2dbe986b074485587a12a80aa40,
         type: 3}
+    - target: {fileID: 96651160202148682, guid: 2e9661da38e19ba4b9092ca5297c87d0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4341843975382193436, guid: 2e9661da38e19ba4b9092ca5297c87d0,
+        type: 3}
+      propertyPath: scenarioFileName
+      value: Final
+      objectReference: {fileID: 0}
+    - target: {fileID: 96651160668091322, guid: 2e9661da38e19ba4b9092ca5297c87d0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 96651159781269953, guid: 2e9661da38e19ba4b9092ca5297c87d0,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 96651158799015333, guid: 2e9661da38e19ba4b9092ca5297c87d0,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3777051529234006888, guid: 2e9661da38e19ba4b9092ca5297c87d0,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 4052007263789018161, guid: 2e9661da38e19ba4b9092ca5297c87d0,
         type: 3}
       propertyPath: m_Animations.Array.size

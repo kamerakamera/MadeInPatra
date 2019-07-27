@@ -421,7 +421,7 @@ PrefabInstance:
     - target: {fileID: 96651158774590649, guid: 2e9661da38e19ba4b9092ca5297c87d0,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -0.000032567576
+      value: 0.00021091786
       objectReference: {fileID: 0}
     - target: {fileID: 96651160535229159, guid: 2e9661da38e19ba4b9092ca5297c87d0,
         type: 3}
@@ -495,6 +495,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: d97af29153931cf4b84461b0c18d5d37,
         type: 3}
+    - target: {fileID: 4341843975382193436, guid: 2e9661da38e19ba4b9092ca5297c87d0,
+        type: 3}
+      propertyPath: scenarioFileName
+      value: Charlotte-before
+      objectReference: {fileID: 0}
     - target: {fileID: 4052007263789018161, guid: 2e9661da38e19ba4b9092ca5297c87d0,
         type: 3}
       propertyPath: m_Animations.Array.size

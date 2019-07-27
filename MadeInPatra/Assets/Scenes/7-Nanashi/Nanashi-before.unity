@@ -647,11 +647,6 @@ PrefabInstance:
       propertyPath: charactors.Array.data[5]
       value: 
       objectReference: {fileID: 2014615323}
-    - target: {fileID: 96651158799015333, guid: 2e9661da38e19ba4b9092ca5297c87d0,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 96651159883459809, guid: 2e9661da38e19ba4b9092ca5297c87d0,
         type: 3}
       propertyPath: backGroundImageList.Array.size
@@ -693,11 +688,6 @@ PrefabInstance:
       propertyPath: m_Size
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 96651160202148682, guid: 2e9661da38e19ba4b9092ca5297c87d0,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 96651160349104589, guid: 2e9661da38e19ba4b9092ca5297c87d0,
         type: 3}
       propertyPath: loadFileName
@@ -709,6 +699,21 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: fe78643fabc89c54e9a1f10efd20cf32,
         type: 3}
+    - target: {fileID: 96651160202148682, guid: 2e9661da38e19ba4b9092ca5297c87d0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4341843975382193436, guid: 2e9661da38e19ba4b9092ca5297c87d0,
+        type: 3}
+      propertyPath: scenarioFileName
+      value: Nanashi-before
+      objectReference: {fileID: 0}
+    - target: {fileID: 96651158799015333, guid: 2e9661da38e19ba4b9092ca5297c87d0,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 4052007263789018161, guid: 2e9661da38e19ba4b9092ca5297c87d0,
         type: 3}
       propertyPath: m_Animations.Array.size

@@ -750,6 +750,11 @@ PrefabInstance:
       propertyPath: loadFileName
       value: Nanashi-after
       objectReference: {fileID: 0}
+    - target: {fileID: 4341843975382193436, guid: 2e9661da38e19ba4b9092ca5297c87d0,
+        type: 3}
+      propertyPath: scenarioFileName
+      value: Nanashi-after
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2e9661da38e19ba4b9092ca5297c87d0, type: 3}
 --- !u!1001 &1939844760
