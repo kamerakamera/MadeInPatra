@@ -9,6 +9,10 @@ public class SaveManeger : Singleton<SaveManeger>
     private GameObject[] stillObj = new GameObject[StringProperty.stillNames.Length];//Still表示関数内にPlayerPrefにKey追加
     private Still[] still = new Still[20];
     [SerializeField]
+    private Image[] stillNameView = new Image[StringProperty.stillNames.Length];
+    [SerializeField]
+    private Sprite[] nameSprites = new Sprite[StringProperty.stillNames.Length];
+    [SerializeField]
     private GameObject[] loadButton = new GameObject[StringProperty.loadSceneName.Length], loadPanelButton = new GameObject[StringProperty.loadScenePanelName.Length], loadPanel = new GameObject[StringProperty.loadScenePanelName.Length];//Scene開始時にPlayerPrefに追加
     int checkStillNum, checkContinueNum, loadContinueCount;
     private int[] loadScenePanelCount = new int[]{
@@ -22,8 +26,8 @@ public class SaveManeger : Singleton<SaveManeger>
     {
         //デバッグ用
         #region 
+
         PlayerPrefs.DeleteAll();
-        PlayerPrefs.SetInt(StringProperty.stillNames[4], 7);
         foreach (var item in StringProperty.loadSceneName)
         {
             PlayerPrefs.SetString(item, item);
@@ -32,6 +36,7 @@ public class SaveManeger : Singleton<SaveManeger>
         {
             PlayerPrefs.SetInt(StringProperty.stillNames[i], stillDebugCount[i]);
         }
+
         #endregion
 
         for (int i = 0; i < stillObj.Length; i++)
@@ -99,6 +104,8 @@ public class SaveManeger : Singleton<SaveManeger>
                 //StillViewの変数に開放枚数を代入
                 stillObj[checkStillNum].SetActive(true);
                 still[checkStillNum].ViewCount = PlayerPrefs.GetInt(StringProperty.stillNames[checkStillNum], 0);
+                stillNameView[checkStillNum].sprite = nameSprites[checkStillNum];
+                stillNameView[checkStillNum].SetNativeSize();
                 Debug.Log(StringProperty.stillNames[checkStillNum] + "のStilを所持しています！");
             }
             else
@@ -111,8 +118,5 @@ public class SaveManeger : Singleton<SaveManeger>
         }
 
     }
-    // Start is called before the first frame update
-
-    // Update is called once per frame
 
 }
