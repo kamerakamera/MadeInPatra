@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class TitleSceneManeger : MonoBehaviour
 {
     [SerializeField]
-    private GameObject startPanel, continuePanel, stillsViewPanel, stillView;
+    private GameObject startPanel, continuePanel, stillsViewPanel, stillView, stillViewBack;
     [SerializeField]
     private Image messagesButtonImage;
     [SerializeField]
@@ -28,14 +28,18 @@ public class TitleSceneManeger : MonoBehaviour
         stillsViewPanel.SetActive(false);
         startPanel.SetActive(true);
         stillView.GetComponent<Image>().enabled = false;
+        stillViewBack.GetComponent<Image>().enabled = false;
         StartManuAnim("Start");
         if (clearMode = SaveManeger.Instance.ClearFlag)
         {
             if (!PlayerPrefs.HasKey("GameClear") && clearMode)
             {
-                Debug.Log(SaveManeger.Instance.ClearFlag);
                 StartManuAnim("ChangeClearMode");
                 PlayerPrefs.SetInt("GameClear", 0);
+            }
+            else if (clearMode)
+            {
+                StartManuAnim("Start");
             }
         }
     }
@@ -135,6 +139,8 @@ public class TitleSceneManeger : MonoBehaviour
         {
             stillView.GetComponent<Image>().sprite = still.GetSprite(0);
             stillView.GetComponent<Image>().enabled = true;
+            stillView.GetComponent<Image>().SetNativeSize();
+            stillViewBack.GetComponent<Image>().enabled = true;
             viewStillClass = still;
         }
     }
@@ -145,6 +151,7 @@ public class TitleSceneManeger : MonoBehaviour
         if (nextNum == 0)
         {
             stillView.GetComponent<Image>().enabled = false;
+            stillViewBack.GetComponent<Image>().enabled = false;
             viewStillClass = null;
             return;
         }
