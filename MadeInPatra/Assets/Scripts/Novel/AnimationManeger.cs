@@ -142,7 +142,7 @@ public class AnimationManeger : Singleton<AnimationManeger>
                     backImageManeger.FadeOut(arrayNum[actionCount]);
                     textBoxController.StartCoroutine("TextBoxFade", arrayNum[actionCount]);
                 }
-                else if (eventName[actionCount] == "SwichPos")
+                else if (eventName[actionCount] == "SwitchPos")//綴りミスるな
                 {
                     charactor[arrayNum[actionCount]].GetComponent<Charactor>().SwichPos(nextOrder[nextOrderNum]);
                     nextOrderNum++;
@@ -197,9 +197,10 @@ public class AnimationManeger : Singleton<AnimationManeger>
             eventName[i] = splits[0];//event名代入
             //eventLine[i] = int.Parse(splits[1]);//event行数
             arrayNum[i] = int.Parse(splits[1]);//charactor,画像,音声などを要素数で指定
-            if (eventName[i] == "ChangePos" || eventName[i] == "ChangeSprite" || eventName[i] == "SwichPos")
+            if (eventName[i] == "ChangePos" || eventName[i] == "ChangeSprite" || eventName[i] == "SwitchPos")
             {
-                nextOrder[nextOrderNum] = splits[2]; nextOrderNum++;
+                nextOrder[nextOrderNum] = splits[2].Split(new string[] { "\r\n" }, System.StringSplitOptions.None)[0];
+                nextOrderNum++;
             }
             for (int j = 0; j < splits.Length; j++)
             {
@@ -207,6 +208,10 @@ public class AnimationManeger : Singleton<AnimationManeger>
             }
         }
         nextOrderNum = 0;
+        foreach (var item in nextOrder)
+        {
+            Debug.Log(item);
+        }
     }
 
     private IEnumerator FadeIn()
