@@ -5,7 +5,58 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    path: Assets/Scenes/StartScene.unity
+    guid: dd3e1e4eab5ba6e4c80e4b67d531d9ce
+  - enabled: 1
+    path: Assets/Scenes/Letter.unity
+    guid: 937f35de5b8fed340b21411bc717d776
+  - enabled: 1
+    path: Assets/Scenes/1-Beginning/Beginning.unity
+    guid: 5b1d7e6c11a69cc4d9fa56bff8b19337
+  - enabled: 1
+    path: Assets/Scenes/2-Tutorial/Tutorial-before.unity
+    guid: 42f2de9035c07bf49ad28f26f8cb4464
+  - enabled: 1
+    path: Assets/Scenes/2-Tutorial/Tutorial-after.unity
+    guid: bdd7c553d2dd9a649857f7176c119ba9
+  - enabled: 1
+    path: Assets/Scenes/3-Eli/Eli-before.unity
+    guid: 678c497eeaf608f4f97a431772473eed
+  - enabled: 1
+    path: Assets/Scenes/3-Eli/Eli-after.unity
+    guid: d96692faec28c524faa2425e6f216aa5
+  - enabled: 1
+    path: Assets/Scenes/4-Charlotte/Charlotte-before.unity
+    guid: 8b6da23a8c511b24bb68450b2efa5e83
+  - enabled: 1
+    path: Assets/Scenes/4-Charlotte/Charlotte-after.unity
+    guid: 5914e41e623c3ea42bc3b288ab5a2bef
+  - enabled: 1
+    path: Assets/Scenes/5-Mico/Mico-before.unity
+    guid: f85435d47891485439453a226768ed33
+  - enabled: 1
+    path: Assets/Scenes/5-Mico/Mico-after.unity
+    guid: 36c4840438e4c804e9b8fe9e59eda357
+  - enabled: 1
+    path: Assets/Scenes/6-Mary/Mary-before.unity
+    guid: 94e12cad8016d3a45b4a8d22868f14d8
+  - enabled: 1
+    path: Assets/Scenes/6-Mary/Mary-after.unity
+    guid: c27668d2a4602c945a94fd3d53632ecb
+  - enabled: 1
+    path: Assets/Scenes/7-Nanashi/Nanashi-before.unity
+    guid: 19ab61f74e170f84380503bca26f425f
+  - enabled: 1
+    path: Assets/Scenes/7-Nanashi/Nanashi-after.unity
+    guid: ef2d7c1f1014ded4c9aa66e676214ff0
+  - enabled: 1
+    path: Assets/Scenes/8-Final/Final.unity
+    guid: 137099810a7be314b9a6aff4d02d4a67
+  - enabled: 1
+    path: Assets/Scenes/8-Final/Endroll.unity
+    guid: 91c103a4e9ca8b8498df28a0f6caf832
   m_configObjects: {}
