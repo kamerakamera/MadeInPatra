@@ -11,7 +11,7 @@ public class AnimationManeger : Singleton<AnimationManeger>
     int[] eventLine, arrayNum;
     int actionCount, cgsCount;
     [SerializeField] private GameObject[] charactor;
-    private Animator[] animator = new Animator[10];
+    private Animator[] animator = new Animator[20];
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip[] audioClip;
     [SerializeField] private Image stillView, changeStillView;
@@ -173,7 +173,6 @@ public class AnimationManeger : Singleton<AnimationManeger>
                     }
                 }
                 actionCount++;//次のアクションへ
-                Debug.Log(actionCount);
             }
         }
     }
@@ -208,10 +207,6 @@ public class AnimationManeger : Singleton<AnimationManeger>
             }
         }
         nextOrderNum = 0;
-        foreach (var item in nextOrder)
-        {
-            Debug.Log(item);
-        }
     }
 
     private IEnumerator FadeIn()
