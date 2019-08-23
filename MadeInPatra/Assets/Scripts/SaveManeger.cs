@@ -28,13 +28,14 @@ public class SaveManeger : Singleton<SaveManeger>
         #region 
 
         PlayerPrefs.DeleteAll();
-        foreach (var item in StringProperty.loadSceneName)
+        for (int i = 0; i < StringProperty.loadSceneName.Length - 3; i++)
         {
-            PlayerPrefs.SetString(item, item);
+            PlayerPrefs.SetString(StringProperty.loadSceneName[i], StringProperty.loadSceneName[i]);
         }
-        for (int i = 0; i < StringProperty.stillNames.Length; i++)
+
+        for (int i = 0; i < 3; i++)
         {
-            PlayerPrefs.SetInt(StringProperty.stillNames[i], stillDebugCount[i]);
+            PlayerPrefs.SetInt(StringProperty.stillNames[i], 1);
         }
 
         #endregion
