@@ -16,12 +16,7 @@ public class TitleSceneManeger : MonoBehaviour
     private Animation fadeScreen;
     private Still viewStillClass;
     private bool isContinuePanelFade, clearMode = false;
-    // Start is called before the first frame update
 
-    private void Awake()
-    {
-
-    }
     void Start()
     {
         continuePanel.SetActive(false);
@@ -42,12 +37,6 @@ public class TitleSceneManeger : MonoBehaviour
                 StartManuAnim("Start");
             }
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 
     void DelAnim()

@@ -11,7 +11,6 @@ public class SwapLetter : Singleton<SwapLetter>
     private bool isAnim;
     [SerializeField]
     public Animator animator;
-    private int LetterIndex;
     // Start is called before the first frame update
     private void Start()//初期化
     {

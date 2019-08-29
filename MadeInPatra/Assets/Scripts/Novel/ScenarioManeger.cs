@@ -8,22 +8,6 @@ public class ScenarioManeger : Singleton<ScenarioManeger>
     private string[] scenarios;
     private int currentTextLine, textLine, currentIndex = 0, textLength = 30;
 
-    // Use this for initialization
-    void Awake()
-    {
-
-    }
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     public void GetScenario(string[] loadScenarioText)
     {
         scenarios = loadScenarioText;

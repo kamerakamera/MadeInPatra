@@ -18,9 +18,6 @@ public class SaveManeger : Singleton<SaveManeger>
     private int[] loadScenePanelCount = new int[]{
         1,3,3,3,3,3,3,2
     };
-    private int[] stillDebugCount = new int[]{
-        1,2,2,2,7,1,1,2,1,1
-    };
     public bool ClearFlag { get; private set; } = false;
     private void Awake()
     {

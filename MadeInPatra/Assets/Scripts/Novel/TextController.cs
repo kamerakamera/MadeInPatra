@@ -111,13 +111,10 @@ public class TextController : MonoBehaviour
             if (currentText.Length <= textCount)
             {
                 SetNextText();
-
-                //animationManeger.ResetAnimationSpeed();
             }
             else if (currentText.Length > textCount)
             {
                 textUpdateInterval = 0;
-                //animationManeger.SkipAnimation(scenarioIndex);
             }
         }
     }

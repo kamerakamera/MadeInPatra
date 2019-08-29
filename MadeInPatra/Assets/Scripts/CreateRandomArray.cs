@@ -5,7 +5,6 @@ using System.IO;
 
 public class CreateRandomArray : MonoBehaviour
 {
-    // Start is called before the first frame update
     private Queue<Sprite> letterQueue = new Queue<Sprite>();
     private int viewLetterNum = 8;//手紙の枚数（人数）
     List<int> randList;

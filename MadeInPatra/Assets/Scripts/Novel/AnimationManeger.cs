@@ -18,7 +18,6 @@ public class AnimationManeger : Singleton<AnimationManeger>
     [SerializeField] private Sprite[] stillPictures;
     [SerializeField] private TextBoxController textBoxController;
     private string[] splits = new string[5];//splitしたときの代入用配列
-    public string animationFileName;//アニメーションなどの命令テキストファイル 
     private string[] nextOrder;
     private int nextOrderNum;
     private int[] layerNumList = new int[]{
@@ -50,18 +49,10 @@ public class AnimationManeger : Singleton<AnimationManeger>
         stillView.gameObject.SetActive(false);
         changeStillView.color = new Color(1, 1, 1, 0);
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     public void ExecuteAnimation(int textLineNum)
     {
         for (int i = 0; i < charactor.Length; i++)//再生中のほかのキャラクターのAnimationをスキップ
         {
-            //if (i == arrayNum[actionCount]) { continue; }
             charactor[i].GetComponent<Charactor>().SkipAnim();
         }
         for (int i = actionCount; i < eventLine.Length; i++)
@@ -194,7 +185,6 @@ public class AnimationManeger : Singleton<AnimationManeger>
         {
             splits = eventName[i].Split(new string[] { " " }, System.StringSplitOptions.None);//Split用配列に代入
             eventName[i] = splits[0];//event名代入
-            //eventLine[i] = int.Parse(splits[1]);//event行数
             arrayNum[i] = int.Parse(splits[1]);//charactor,画像,音声などを要素数で指定
             if (eventName[i] == "ChangePos" || eventName[i] == "ChangeSprite" || eventName[i] == "SwitchPos")
             {

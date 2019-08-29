@@ -11,10 +11,4 @@ public class AddContinueScene : MonoBehaviour
         PlayerPrefs.SetString(SceneManager.GetActiveScene().name, SceneManager.GetActiveScene().name);
         Debug.Log(SceneManager.GetActiveScene().name + "をloadできるようになりました！");
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 }

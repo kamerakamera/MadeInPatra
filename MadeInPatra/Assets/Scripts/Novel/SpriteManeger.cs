@@ -7,11 +7,6 @@ public class SpriteManeger : MonoBehaviour
     [SerializeField]
     Charactor[] charactors;
     Sprite[] sprites = new Sprite[StringProperty.expressionName.Length];
-    // Start is called before the first frame update
-    private void Awake()
-    {
-
-    }
     void Start()
     {
         for (int i = 0; i < charactors.Length; i++)
@@ -31,9 +26,4 @@ public class SpriteManeger : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 }

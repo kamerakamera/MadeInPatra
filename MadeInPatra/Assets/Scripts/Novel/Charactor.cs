@@ -29,19 +29,6 @@ public class Charactor : MonoBehaviour
 
     Dictionary<string, Sprite> changeSprite = new Dictionary<string, Sprite>();
 
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        //myPos = charactorPos["center"];
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     public void SetLayerNum(int num)
     {
         nowSprite.sortingOrder = num;

@@ -25,15 +25,6 @@ public class TextLogManeger : MonoBehaviour
         SwitchLogWindow();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        /*if (Input.GetKeyDown("a"))
-        {
-            SwitchLogWindow();
-        } */
-    }
-
     public void CreateLogObj(string str)
     {
         logObj = Instantiate(logObjectPre, logContent);
@@ -56,7 +47,8 @@ public class TextLogManeger : MonoBehaviour
         }
     }
 
-    public void OnClick(){
+    public void OnClick()
+    {
         SwitchLogWindow();
     }
 }

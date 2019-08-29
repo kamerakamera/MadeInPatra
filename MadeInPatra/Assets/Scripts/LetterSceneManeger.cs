@@ -10,9 +10,6 @@ public class LetterSceneManeger : Singleton<LetterSceneManeger>
     private Animation fadeScreen;
     [SerializeField]
     private AnimationClip[] fadeAnimation;
-    List<Sprite> letters = new List<Sprite>();
-    [SerializeField]
-    private GameObject letterPanel;
     [SerializeField]
     private Animator[] lettersAnimator;
     [SerializeField]
